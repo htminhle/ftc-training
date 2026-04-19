@@ -3,186 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turtlebot FTC Training Hub</title>
+    <title>Turtlebot FTC Engineering Portal</title>
     <style>
         :root {
-            --bg: #121212;
-            --card-bg: #1e1e1e;
+            --bg: #0f0f0f;
+            --card-bg: #181818;
             --primary: #00ff00;
             --secondary: #3498db;
-            --danger: #ff4444;
-            --text: #e0e0e0;
+            --danger: #e74c3c;
+            --text: #f0f0f0;
+            --accent: #f1c40f;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
             padding: 20px;
-            line-height: 1.6;
         }
 
-        header {
+        .header {
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #004400 100%);
+            background: linear-gradient(90deg, #1a1a1a, #003300);
+            padding: 40px;
             border-radius: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
         }
 
-        h1 { color: var(--primary); margin: 0; font-size: 2.5em; }
-        .subtitle { color: #aaa; font-style: italic; }
+        h1 { color: var(--primary); margin: 0; letter-spacing: 2px; }
 
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        /* Tab System */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
         }
+
+        .tab-btn {
+            background: #222;
+            color: white;
+            border: 1px solid #444;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: black;
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .card {
             background: var(--card-bg);
-            padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            border-top: 4px solid var(--primary);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary);
         }
 
-        .full-width { grid-column: 1 / -1; }
+        .tool-box {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px dashed #555;
+            margin-top: 20px;
+        }
 
-        /* Tools Styling */
-        input, textarea, select {
+        /* Forms & Inputs */
+        input, select, textarea {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border-radius: 5px;
+            border-radius: 6px;
             border: 1px solid #444;
-            background: #2a2a2a;
+            background: #111;
             color: white;
             box-sizing: border-box;
         }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
+        button.action-btn {
+            background: var(--primary);
+            color: black;
             font-weight: bold;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 6px;
             cursor: pointer;
-            transition: 0.3s;
             text-transform: uppercase;
         }
 
-        .btn-primary { background: var(--primary); color: #000; }
-        .btn-danger { background: var(--danger); color: white; }
-        button:hover { opacity: 0.8; }
-
-        /* Simulator Bars */
-        .stat-bar { height: 20px; background: #333; border-radius: 10px; margin: 8px 0; overflow: hidden; }
-        .fill { height: 100%; transition: width 0.3s ease; width: 0%; }
+        /* Simulators */
+        .stat-bar { height: 25px; background: #333; border-radius: 12px; overflow: hidden; margin: 10px 0; }
+        .fill { height: 100%; transition: width 0.4s ease-out; }
         #speed-fill { background: var(--secondary); }
-        #torque-fill { background: #e67e22; }
+        #torque-fill { background: var(--accent); }
 
-        .log-entry {
-            background: #2a2a2a;
-            padding: 10px;
-            border-left: 4px solid var(--danger);
-            margin-top: 10px;
-            font-size: 0.9em;
+        .component-tag {
+            display: inline-block;
+            background: #333;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            border: 1px solid #555;
         }
+        
+        .rev-tag { border-color: #f36f21; color: #f36f21; }
+        .gobilda-tag { border-color: #f1c40f; color: #f1c40f; }
 
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
-
-        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>TURTLEBOT ROBOTICS</h1>
-    [span_0](start_span)<p class="subtitle">"Building, Coding, and Competing at the Highest Level"[span_0](end_span)</p>
-</header>
+<div class="header">
+    <h1>TURTLEBOT ROBOTICS PORTAL</h1>
+    <p>Season 2026-2027 Foundations Training</p>
+</div>
 
-<div class="grid">
-    
-    <div class="card">
-        <h2>Week 1: Chassis & Fasteners</h2>
-        [span_1](start_span)<p><strong>Goal:</strong> Transition from kit-of-parts to an engineered machine.[span_1](end_span)</p>
-        <ul>
-            [span_2](start_span)<li><strong>Theory:</strong> Understanding Center of Gravity (CoG) and rigidity.[span_2](end_span)</li>
-            [span_3](start_span)<li><strong>Hardware:</strong> Bolt vs. Screw, hex keys, and thread-locking fluid.[span_3](end_span)</li>
-            [span_4](start_span)<li><strong>The "Diagonal Test":</strong> Diagonals must match to ensure a square frame.[span_4](end_span)</li>
-        </ul>
-        <hr style="border: 0.5px solid #444;">
-        <h3>Validator: Squareness Test</h3>
-        <input type="number" id="diagA" placeholder="Diagonal A (inches)">
-        <input type="number" id="diagB" placeholder="Diagonal B (inches)">
-        <button class="btn-primary" onclick="checkSquare()">Check Chassis Square</button>
-        <div id="squareResult" style="margin-top:15px; font-weight:bold;"></div>
-    </div>
+<div class="tabs">
+    <button class="tab-btn active" onclick="openTab(event, 'week1')">Week 1: Chassis</button>
+    <button class="tab-btn" onclick="openTab(event, 'week2')">Week 2: Drivetrains</button>
+    <button class="tab-btn" onclick="openTab(event, 'logs')">Engineering Logs</button>
+</div>
 
+<div id="week1" class="tab-content active">
     <div class="card">
-        <h2>Week 2: Drivetrains</h2>
-        [span_5](start_span)<p><strong>Goal:</strong> Mount motors and understand mechanical advantage.[span_5](end_span)</p>
+        <h2>🏗️ The Foundation: Chassis & Fasteners</h2>
+        [span_2](start_span)<p>Goal: Build a square push-bot frame and master the building ecosystem[span_2](end_span).</p>
+        
+        <h3>Required Hardware Knowledge:</h3>
         <ul>
-            [span_6](start_span)<li><strong>Physics:</strong> Torque vs. Speed trade-offs (Mechanical Advantage).[span_6](end_span)</li>
-            [span_7](start_span)[span_8](start_span)<li><strong>Configuration:</strong> Tank Drive vs. Mecanum wheels.[span_7](end_span)[span_8](end_span)</li>
-            [span_9](start_span)<li><strong>Roll Test:</strong> Verify rotation direction before full wiring.[span_9](end_span)</li>
+            [span_3](start_span)[span_4](start_span)<li><strong>Channel Systems:</strong> Comparing <span class="component-tag gobilda-tag">goBilda 1121 Series</span> (8mm grid) vs. <span class="component-tag rev-tag">REV U-Channel</span>[span_3](end_span)[span_4](end_span).</li>
+            [span_5](start_span)<li><strong>Fasteners:</strong> Mastery of M3 and M4 socket head bolts; avoid self-tapping screws on structural joints[span_5](end_span).</li>
+            [span_6](start_span)<li><strong>Physics:</strong> Locating the Center of Gravity (CoG) and maintaining Degrees of Freedom[span_6](end_span).</li>
         </ul>
-        <hr style="border: 0.5px solid #444;">
-        <h3>Simulator: Torque vs. Speed</h3>
-        <p>Gear Ratio: <span id="ratio-display">20</span>:1</p>
-        <input type="range" min="1" max="100" value="20" id="ratioSlider" style="width:100%;">
-        <div style="margin-top:15px;">
-            <span>Top Speed</span>
-            <div class="stat-bar"><div id="speed-fill" class="fill" style="width: 80%;"></div></div>
-            <span>Towing/Pushing Power</span>
-            <div class="stat-bar"><div id="torque-fill" class="fill" style="width: 20%;"></div></div>
+
+        <div class="tool-box">
+            <h3>Interactive: Diagonal Squareness Validator</h3>
+            <p>Measure your chassis from corner to corner. [span_7](start_span)Diagonals must match to ensure the robot drives straight[span_7](end_span).</p>
+            <input type="number" id="diagA" placeholder="Measurement A (inches)">
+            <input type="number" id="diagB" placeholder="Measurement B (inches)">
+            <button class="action-btn" onclick="validateChassis()">Run Precision Check</button>
+            <div id="diagResult" style="margin-top:15px; font-weight:bold;"></div>
         </div>
     </div>
+</div>
 
+<div id="week2" class="tab-content">
     <div class="card">
-        <h2>🛠️ Team Bug Report</h2>
-        <p>Document technical issues for the Engineering Portfolio.</p>
-        <select id="bugType">
-            <option>Mechanical</option>
-            <option>Electrical</option>
-            <option>Software</option>
-        </select>
-        <input type="text" id="bugMember" placeholder="Your Name">
-        <textarea id="bugDesc" placeholder="What failed? How did you fix it?"></textarea>
-        <button class="btn-danger" onclick="addBug()">Log Technical Issue</button>
-        <div id="bugLog"></div>
-    </div>
+        <h2>⚙️ Motion: Drivetrain Dynamics</h2>
+        [span_8](start_span)<p>Goal: Mount motors and calculate mechanical advantage[span_8](end_span).</p>
 
-    <div class="card">
-        <h2>Study Materials & Resources</h2>
+        <h3>Core Concepts:</h3>
         <ul>
-            [span_10](start_span)<li><strong>Game Manual 0:</strong> The bible for FTC hardware and software.[span_10](end_span)</li>
-            [span_11](start_span)<li><strong>REV Robotics:</strong> Documentation for Control Hubs and Sensors.[span_11](end_span)</li>
-            [span_12](start_span)<li><strong>Onshape:</strong> 3D CAD modeling to design before building.[span_12](end_span)</li>
-            [span_13](start_span)<li><strong>FirstInspires:</strong> Official rules and kickoff updates.[span_13](end_span)</li>
+            [span_9](start_span)<li><strong>Motor Selection:</strong> <span class="component-tag rev-tag">REV HD Hex</span> or <span class="component-tag gobilda-tag">Yellow Jacket</span> planetary motors[span_9](end_span).</li>
+            <li><strong>Gear Ratios:</strong> Trading RPM for Torque. [span_10](start_span)High-ratio (e.g., 60:1) for strength; low-ratio (e.g., 20:1) for speed[span_10](end_span).</li>
+            [span_11](start_span)[span_12](start_span)<li><strong>Wheel Physics:</strong> Mecanum wheels for strafing vs. high-traction rubber wheels for pushing[span_11](end_span)[span_12](end_span).</li>
         </ul>
-        [span_14](start_span)<p style="font-size: 0.85em; color: #888;">*Schedule and materials subject to change based on game release.[span_14](end_span)</p>
-    </div>
 
+        <div class="tool-box">
+            <h3>Interactive: Gear Ratio & Speed Simulator</h3>
+            [span_13](start_span)<p>Adjust the ratio to see how it impacts your robot's performance[span_13](end_span).</p>
+            <label>Selected Ratio: <span id="ratioLabel">20</span>:1</label>
+            <input type="range" min="1" max="100" value="20" class="slider" id="ratioSlider" style="width:100%; margin:20px 0;">
+            
+            <div class="stat-container">
+                <label>Theoretical Speed</label>
+                <div class="stat-bar"><div id="speed-fill" class="fill" style="width: 80%;"></div></div>
+                
+                <label>Pushing Power (Torque)</label>
+                <div class="stat-bar"><div id="torque-fill" class="fill" style="width: 20%;"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="logs" class="tab-content">
+    <div class="card" style="border-left-color: var(--danger);">
+        <h2>🛠️ Team Engineering Log</h2>
+        <p>Document every failure. Professional engineers don't call them "mistakes"—they call them "data points."</p>
+        
+        <div class="tool-box">
+            <select id="logType">
+                <option value="Mechanical">Mechanical Failure</option>
+                <option value="Electrical">Electrical/Wiring Issue</option>
+                <option value="Software">Code/Logic Bug</option>
+            </select>
+            <input type="text" id="studentName" placeholder="Student Name">
+            <textarea id="logDesc" rows="4" placeholder="What happened? What was the root cause? How was it fixed?"></textarea>
+            <button class="action-btn" style="background: var(--danger); color: white;" onclick="submitLog()">Commit to Log</button>
+        </div>
+
+        <div id="logEntries" style="margin-top:20px;"></div>
+    </div>
 </div>
 
 <script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
     // Week 1 Logic
-    function checkSquare() {
+    function validateChassis() {
         const a = parseFloat(document.getElementById('diagA').value);
         const b = parseFloat(document.getElementById('diagB').value);
-        const res = document.getElementById('squareResult');
+        const res = document.getElementById('diagResult');
         if(!a || !b) return;
-        
+
         const diff = Math.abs(a - b);
         if(diff <= 0.125) {
-            res.innerHTML = "✅ READY: Your chassis is square!";
+            res.innerHTML = "✅ STATUS: SQUARE. Within competition tolerance (1/8 inch).";
             res.style.color = "var(--primary)";
         } else {
-            res.innerHTML = "❌ RACKED: Difference is " + diff.toFixed(3) + "\". Adjust your rails.";
+            res.innerHTML = "❌ STATUS: RACKED. Difference of " + diff.toFixed(3) + " in. Re-align chassis.";
             res.style.color = "var(--danger)";
         }
     }
@@ -191,35 +249,37 @@
     const slider = document.getElementById('ratioSlider');
     slider.oninput = function() {
         const val = this.value;
-        document.getElementById('ratio-display').innerHTML = val;
+        document.getElementById('ratioLabel').innerHTML = val;
         
-        // Speed is inversely proportional to ratio
-        const speedWidth = (1 / val) * 100 * 10; 
-        // Torque is directly proportional
+        const speedWidth = (100 / val) * 5; // Simplified inverse
         const torqueWidth = val;
 
         document.getElementById('speed-fill').style.width = Math.min(speedWidth, 100) + "%";
         document.getElementById('torque-fill').style.width = torqueWidth + "%";
     }
 
-    // Bug Report Logic
-    function addBug() {
-        const type = document.getElementById('bugType').value;
-        const name = document.getElementById('bugMember').value;
-        const desc = document.getElementById('bugDesc').value;
+    // Bug Log Logic
+    function submitLog() {
+        const type = document.getElementById('logType').value;
+        const name = document.getElementById('studentName').value;
+        const desc = document.getElementById('logDesc').value;
         if(!name || !desc) return;
 
+        const container = document.getElementById('logEntries');
         const entry = document.createElement('div');
-        entry.className = 'log-entry';
-        entry.innerHTML = `<strong>[${type}]</strong> ${desc} <br><em>- ${name}</em>`;
-        document.getElementById('bugLog').prepend(entry);
+        entry.style.background = "#333";
+        entry.style.padding = "15px";
+        entry.style.borderRadius = "8px";
+        entry.style.marginBottom = "10px";
+        entry.style.borderLeft = "4px solid var(--danger)";
+        
+        entry.innerHTML = `<strong>[${type}]</strong> ${desc} <br><small>Logged by: ${name}</small>`;
+        container.prepend(entry);
 
-        document.getElementById('bugMember').value = '';
-        document.getElementById('bugDesc').value = '';
-
+        document.getElementById('studentName').value = "";
+        document.getElementById('logDesc').value = "";
     }
 </script>
 
 </body>
-</htlm>
-
+</html>
