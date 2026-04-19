@@ -280,6 +280,73 @@
         document.getElementById('logDesc').value = "";
     }
 </script>
+<div id="week3" class="tab-content">
+    <div class="card" style="border-left-color: #f36f21;">
+        <h2>⚡ Weeks 3-4: Power & Control Systems</h2>
+        <p><strong>Goal:</strong> Wire the REV Control Hub, configure the hardware map, and write the first TeleOp code.</p>
+        
+        <h3>Technical Objectives:</h3>
+        <ul>
+            [span_3](start_span)<li><strong>Hub Architecture:</strong> Identifying DC Motor ports (with encoder inputs), Servo ports (PWM), and I2C/Digital/Analog sensor headers[span_3](end_span).</li>
+            [span_4](start_span)[span_5](start_span)<li><strong>The Power Chain:</strong> Wiring the 12V LiPo battery through a slim main switch to the Hub; ensuring all connections are secure to survive match cycles[span_4](end_span)[span_5](end_span).</li>
+            [span_6](start_span)<li><strong>Software Logic:</strong> Creating a "Hardware Map" configuration on the Robot Controller app to name every component (e.g., "LeftDrive")[span_6](end_span).</li>
+        </ul>
+
+        <div class="tool-box">
+            <h3>Interactive: Hub Configuration Checklist</h3>
+            <p>Ensure your physical wiring matches your software "Hardware Map."</p>
+            <div class="port-grid">
+                <div class="port" id="p0" onclick="togglePort('p0')">Motor Port 0<br><small>Chassis Drive</small></div>
+                <div class="port" id="p1" onclick="togglePort('p1')">Motor Port 1<br><small>Chassis Drive</small></div>
+                <div class="port" id="p2" onclick="togglePort('p2')">Servo Port 0<br><small>Claw/Pivot</small></div>
+                <div class="port" id="p3" onclick="togglePort('p3')">I2C Port 0<br><small>IMU/Gyro</small></div>
+            </div>
+            <p><small>*Click ports to verify wiring continuity.</small></p>
+        </div>
+    </div>
+</div>
+
+<div id="week5" class="tab-content">
+    <div class="card" style="border-left-color: #3498db;">
+        <h2>🏗️ Weeks 5-6: Mechanisms & Sensors</h2>
+        <p><strong>Goal:</strong> Add scoring attachments and utilize sensors for "smarter" behavior.</p>
+
+        <h3>Technical Objectives:</h3>
+        <ul>
+            [span_7](start_span)<li><strong>Degrees of Freedom:</strong> Implementing linear slides for vertical reach and rotational arms for element manipulation[span_7](end_span).</li>
+            [span_8](start_span)<li><strong>Rotational Physics:</strong> Understanding how encoder "ticks" correlate to real-world movement (e.g., mapping ticks to arm angle)[span_8](end_span).</li>
+            [span_9](start_span)<li><strong>Sensor Feedback:</strong> Using limit switches to "zero" mechanisms and the built-in IMU/Gyro for precise turns[span_9](end_span).</li>
+        </ul>
+
+        <div class="tool-box">
+            <h3>Interactive: Encoder Ticks Calculator</h3>
+            <p>Calculate the target encoder ticks for your mechanism's movement.</p>
+            <label>Mechanism Rotation Angle: <span id="tickAngle">90</span>°</label>
+            <input type="range" min="0" max="360" value="90" class="slider" id="encoderSlider" oninput="calcTicks()">
+            
+            <div style="margin-top:20px; padding:15px; background:#111; border-radius:8px;">
+                <label>Target Encoder Ticks:</label>
+                <div id="tickDisplay" style="font-size:1.5em; color:var(--primary); font-family:monospace;">720</div>
+                <small>Formula: Degrees × (Ticks Per Rev / 360)</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePort(id) {
+        document.getElementById(id).classList.toggle('active');
+    }
+
+    function calcTicks() {
+        const angle = document.getElementById('encoderSlider').value;
+        document.getElementById('tickAngle').innerText = angle;
+        // Example constant for a standard 20:1 planetary motor (approx 537.7 ticks/rev)
+        const ticksPerDegree = 537.7 / 360;
+        const result = Math.round(angle * ticksPerDegree);
+        document.getElementById('tickDisplay').innerText = result;
+    }
+</script>
 
 </body>
 </html>
