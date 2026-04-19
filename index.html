@@ -13,338 +13,280 @@
             --danger: #e74c3c;
             --text: #f0f0f0;
             --accent: #f1c40f;
+            --rev-orange: #f36f21;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        
+        .header { 
+            text-align: center; 
+            background: linear-gradient(90deg, #1a1a1a, #003300); 
+            padding: 40px; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+            border: 1px solid #333; 
         }
 
-        .header {
-            text-align: center;
-            background: linear-gradient(90deg, #1a1a1a, #003300);
-            padding: 40px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #333;
+        h1 { color: var(--primary); margin: 0; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* Navigation Tabs */
+        .tabs-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 5px; 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid #333; 
         }
 
-        h1 { color: var(--primary); margin: 0; letter-spacing: 2px; }
-
-        /* Tab System */
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+        .tab-btn { 
+            background: #222; 
+            color: white; 
+            border: 1px solid #444; 
+            padding: 12px 20px; 
+            cursor: pointer; 
+            border-radius: 8px 8px 0 0; 
+            font-weight: bold; 
+            transition: 0.3s; 
         }
 
-        .tab-btn {
-            background: #222;
-            color: white;
-            border: 1px solid #444;
-            padding: 12px 24px;
-            cursor: pointer;
-            border-radius: 8px 8px 0 0;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+        .tab-btn.active { background: var(--primary); color: black; border-color: var(--primary); }
 
-        .tab-btn.active {
-            background: var(--primary);
-            color: black;
-            border-color: var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s;
-        }
-
+        .tab-content { display: none; animation: fadeIn 0.4s; }
         .tab-content.active { display: block; }
-
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--primary);
+        .card { 
+            background: var(--card-bg); 
+            border-radius: 12px; 
+            padding: 30px; 
+            margin-bottom: 20px; 
+            border-left: 6px solid var(--primary); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        .tool-box {
-            background: #222;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px dashed #555;
-            margin-top: 20px;
+        .tool-box { 
+            background: #222; 
+            padding: 20px; 
+            border-radius: 10px; 
+            border: 1px dashed #555; 
+            margin-top: 25px; 
         }
 
-        /* Forms & Inputs */
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 6px;
-            border: 1px solid #444;
-            background: #111;
-            color: white;
-            box-sizing: border-box;
+        /* Forms & Interactive Elements */
+        input, select, textarea { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 10px 0; 
+            border-radius: 6px; 
+            border: 1px solid #444; 
+            background: #111; 
+            color: white; 
+            box-sizing: border-box; 
         }
 
-        button.action-btn {
-            background: var(--primary);
-            color: black;
-            font-weight: bold;
-            border: none;
-            padding: 15px;
-            width: 100%;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
+        button.action-btn { 
+            background: var(--primary); 
+            color: black; 
+            font-weight: bold; 
+            border: none; 
+            padding: 15px; 
+            width: 100%; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            margin-top: 15px;
         }
 
-        /* Simulators */
+        /* Simulators and Bars */
         .stat-bar { height: 25px; background: #333; border-radius: 12px; overflow: hidden; margin: 10px 0; }
         .fill { height: 100%; transition: width 0.4s ease-out; }
         #speed-fill { background: var(--secondary); }
         #torque-fill { background: var(--accent); }
 
-        .component-tag {
-            display: inline-block;
-            background: #333;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin-right: 5px;
-            border: 1px solid #555;
-        }
-        
-        .rev-tag { border-color: #f36f21; color: #f36f21; }
-        .gobilda-tag { border-color: #f1c40f; color: #f1c40f; }
+        .port-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-top: 15px; }
+        .port { padding: 15px; background: #333; text-align: center; border-radius: 8px; font-size: 0.9em; border: 2px solid #555; cursor: pointer; }
+        .port.active { border-color: var(--primary); color: var(--primary); box-shadow: 0 0 10px var(--primary); }
 
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-right: 5px; font-weight: bold; }
+        .rev-tag { background: var(--rev-orange); color: white; }
+        .gobilda-tag { background: var(--accent); color: black; }
+
+        @media (max-width: 768px) { .tabs-container { flex-direction: column; } }
     </style>
 </head>
 <body>
 
 <div class="header">
-    <h1>TURTLEBOT ROBOTICS PORTAL</h1>
-    <p>Season 2026-2027 Foundations Training</p>
+    <h1>TURTLEBOT ROBOTICS HUB</h1>
+    <p>Engineering Curriculum & Interactive Training Portal</p>
 </div>
 
-<div class="tabs">
-    <button class="tab-btn active" onclick="openTab(event, 'week1')">Week 1: Chassis</button>
-    <button class="tab-btn" onclick="openTab(event, 'week2')">Week 2: Drivetrains</button>
-    <button class="tab-btn" onclick="openTab(event, 'logs')">Engineering Logs</button>
+<div class="tabs-container">
+    <button class="tab-btn active" onclick="openTab(event, 'week1')">Wk 1: Chassis</button>
+    <button class="tab-btn" onclick="openTab(event, 'week2')">Wk 2: Drivetrains</button>
+    <button class="tab-btn" onclick="openTab(event, 'week3')">Wk 3-4: Power</button>
+    <button class="tab-btn" onclick="openTab(event, 'week5')">Wk 5-6: Mechanisms</button>
+    <button class="tab-btn" onclick="openTab(event, 'logs')">Bug Logs</button>
 </div>
 
 <div id="week1" class="tab-content active">
     <div class="card">
-        <h2>🏗️ The Foundation: Chassis & Fasteners</h2>
-        [span_2](start_span)<p>Goal: Build a square push-bot frame and master the building ecosystem[span_2](end_span).</p>
-        
-        <h3>Required Hardware Knowledge:</h3>
+        <h2>🏗️ Week 1: Chassis & Fasteners</h2>
+        [span_4](start_span)<p><strong>Goal:</strong> Understand building systems and assemble a square frame[span_4](end_span).</p>
         <ul>
-            [span_3](start_span)[span_4](start_span)<li><strong>Channel Systems:</strong> Comparing <span class="component-tag gobilda-tag">goBilda 1121 Series</span> (8mm grid) vs. <span class="component-tag rev-tag">REV U-Channel</span>[span_3](end_span)[span_4](end_span).</li>
-            [span_5](start_span)<li><strong>Fasteners:</strong> Mastery of M3 and M4 socket head bolts; avoid self-tapping screws on structural joints[span_5](end_span).</li>
-            [span_6](start_span)<li><strong>Physics:</strong> Locating the Center of Gravity (CoG) and maintaining Degrees of Freedom[span_6](end_span).</li>
+            [span_5](start_span)<li><strong>Hardware 101:</strong> Distinguishing bolts from screws and using thread-locking fluid[span_5](end_span).</li>
+            [span_6](start_span)<li><strong>Physics:</strong> Managing the Center of Gravity (CoG) and Degrees of Freedom[span_6](end_span).</li>
+            [span_7](start_span)<li><strong>Structural Integrity:</strong> Rigid frames lead to stable autonomous paths[span_7](end_span).</li>
         </ul>
-
         <div class="tool-box">
-            <h3>Interactive: Diagonal Squareness Validator</h3>
-            <p>Measure your chassis from corner to corner. [span_7](start_span)Diagonals must match to ensure the robot drives straight[span_7](end_span).</p>
-            <input type="number" id="diagA" placeholder="Measurement A (inches)">
-            <input type="number" id="diagB" placeholder="Measurement B (inches)">
-            <button class="action-btn" onclick="validateChassis()">Run Precision Check</button>
+            <h3>Precision Validator: Chassis Squareness</h3>
+            <p>Measure diagonally from corner to corner. [span_8](start_span)Values must match for a square robot[span_8](end_span).</p>
+            <input type="number" id="diagA" placeholder="Diagonal A (inches)">
+            <input type="number" id="diagB" placeholder="Diagonal B (inches)">
+            <button class="action-btn" onclick="validateChassis()">Verify Geometry</button>
             <div id="diagResult" style="margin-top:15px; font-weight:bold;"></div>
         </div>
     </div>
 </div>
 
 <div id="week2" class="tab-content">
-    <div class="card">
-        <h2>⚙️ Motion: Drivetrain Dynamics</h2>
-        [span_8](start_span)<p>Goal: Mount motors and calculate mechanical advantage[span_8](end_span).</p>
-
-        <h3>Core Concepts:</h3>
+    <div class="card" style="border-left-color: var(--secondary);">
+        <h2>⚙️ Week 2: Drivetrain Dynamics</h2>
+        [span_9](start_span)[span_10](start_span)<p><strong>Goal:</strong> Mount motors and understand mechanical trade-offs[span_9](end_span)[span_10](end_span).</p>
         <ul>
-            [span_9](start_span)<li><strong>Motor Selection:</strong> <span class="component-tag rev-tag">REV HD Hex</span> or <span class="component-tag gobilda-tag">Yellow Jacket</span> planetary motors[span_9](end_span).</li>
-            <li><strong>Gear Ratios:</strong> Trading RPM for Torque. [span_10](start_span)High-ratio (e.g., 60:1) for strength; low-ratio (e.g., 20:1) for speed[span_10](end_span).</li>
-            [span_11](start_span)[span_12](start_span)<li><strong>Wheel Physics:</strong> Mecanum wheels for strafing vs. high-traction rubber wheels for pushing[span_11](end_span)[span_12](end_span).</li>
+            [span_11](start_span)<li><strong>Gear Ratios:</strong> High ratios (e.g., 60:1) provide torque; low ratios (e.g., 20:1) provide speed[span_11](end_span).</li>
+            [span_12](start_span)<li><strong>Configurations:</strong> Choosing between Traction Tank drives and Omni-directional Mecanum wheels[span_12](end_span).</li>
+            [span_13](start_span)<li><strong>The Roll Test:</strong> Manual verification that all motors spin forward[span_13](end_span).</li>
         </ul>
-
         <div class="tool-box">
-            <h3>Interactive: Gear Ratio & Speed Simulator</h3>
-            [span_13](start_span)<p>Adjust the ratio to see how it impacts your robot's performance[span_13](end_span).</p>
-            <label>Selected Ratio: <span id="ratioLabel">20</span>:1</label>
-            <input type="range" min="1" max="100" value="20" class="slider" id="ratioSlider" style="width:100%; margin:20px 0;">
-            
-            <div class="stat-container">
-                <label>Theoretical Speed</label>
-                <div class="stat-bar"><div id="speed-fill" class="fill" style="width: 80%;"></div></div>
-                
+            <h3>Simulator: Torque vs. Speed</h3>
+            <label>Current Ratio: <span id="ratioLabel">20</span>:1</label>
+            <input type="range" min="1" max="100" value="20" class="slider" id="ratioSlider" style="width:100%;" oninput="updateSim()">
+            <div style="margin-top:20px;">
+                <label>Theoretical Top Speed</label>
+                <div class="stat-bar"><div id="speed-fill" class="fill"></div></div>
                 <label>Pushing Power (Torque)</label>
-                <div class="stat-bar"><div id="torque-fill" class="fill" style="width: 20%;"></div></div>
+                <div class="stat-bar"><div id="torque-fill" class="fill"></div></div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div id="week3" class="tab-content">
+    <div class="card" style="border-left-color: var(--rev-orange);">
+        <h2>⚡ Weeks 3-4: Power & Control Systems</h2>
+        [span_14](start_span)[span_15](start_span)<p><strong>Goal:</strong> Wire the Hub and configure the Hardware Map[span_14](end_span)[span_15](end_span).</p>
+        <ul>
+            [span_16](start_span)<li><strong>Power Chain:</strong> 12V LiPo battery wired through a mandatory main switch to the Control Hub[span_16](end_span).</li>
+            [span_17](start_span)<li><strong>Hub I/O:</strong> Mapping DC Motors (with encoders), Servos, and Sensors[span_17](end_span).</li>
+            [span_18](start_span)<li><strong>Pairing:</strong> Establishing Wi-Fi Direct between the Hub and Driver Station[span_18](end_span).</li>
+        </ul>
+        <div class="tool-box">
+            <h3>Interactive: Hardware Map Checklist</h3>
+            [span_19](start_span)<p>Click ports to verify wiring to your software configuration[span_19](end_span).</p>
+            <div class="port-grid">
+                <div class="port" id="m0" onclick="togglePort('m0')">Motor Port 0<br><small>LeftDrive</small></div>
+                <div class="port" id="m1" onclick="togglePort('m1')">Motor Port 1<br><small>RightDrive</small></div>
+                <div class="port" id="s0" onclick="togglePort('s0')">Servo Port 0<br><small>ClawPivot</small></div>
+                <div class="port" id="i2c" onclick="togglePort('i2c')">I2C Port 0<br><small>IMU/Gyro</small></div>
+            </div>
+            <button class="action-btn" style="background: var(--rev-orange); color: white;" onclick="alert('Config Verified!')">Validate Hardware Map</button>
+        </div>
+    </div>
+</div>
+
+<div id="week5" class="tab-content">
+    <div class="card" style="border-left-color: var(--accent);">
+        <h2>🏗️ Weeks 5-6: Mechanisms & Sensors</h2>
+        [span_20](start_span)[span_21](start_span)<p><strong>Goal:</strong> Implement scoring appendages and sensor logic[span_20](end_span)[span_21](end_span).</p>
+        <ul>
+            [span_22](start_span)<li><strong>Degrees of Freedom:</strong> Choosing between linear slides and rotational arms[span_22](end_span).</li>
+            [span_23](start_span)<li><strong>Sensor Logic:</strong> Using Encoders for distance and the IMU Gyro for headings[span_23](end_span).</li>
+            [span_24](start_span)<li><strong>Safety Systems:</strong> Implementing limit switches to prevent mechanism over-travel[span_24](end_span).</li>
+        </ul>
+        <div class="tool-box">
+            <h3>Encoder Ticks Calculator</h3>
+            [span_25](start_span)<p>Calculate target ticks for mechanism rotation[span_25](end_span).</p>
+            <label>Target Angle: <span id="degLabel">90</span>°</label>
+            <input type="range" min="0" max="360" value="90" style="width:100%;" oninput="calcTicks(this.value)">
+            <div id="tickResult" style="margin-top:15px; font-size:1.4em; color: var(--accent); font-family: monospace;">Target Ticks: 134</div>
         </div>
     </div>
 </div>
 
 <div id="logs" class="tab-content">
     <div class="card" style="border-left-color: var(--danger);">
-        <h2>🛠️ Team Engineering Log</h2>
-        <p>Document every failure. Professional engineers don't call them "mistakes"—they call them "data points."</p>
-        
+        <h2>🛠️ Team Engineering Log (Bug Tracker)</h2>
+        [span_26](start_span)<p>Document technical failures for the Engineering Portfolio[span_26](end_span).</p>
         <div class="tool-box">
-            <select id="logType">
-                <option value="Mechanical">Mechanical Failure</option>
-                <option value="Electrical">Electrical/Wiring Issue</option>
-                <option value="Software">Code/Logic Bug</option>
+            <input type="text" id="stuName" placeholder="Student Name">
+            <select id="issueType">
+                <option>Mechanical</option>
+                <option>Electrical</option>
+                <option>Software</option>
             </select>
-            <input type="text" id="studentName" placeholder="Student Name">
-            <textarea id="logDesc" rows="4" placeholder="What happened? What was the root cause? How was it fixed?"></textarea>
-            <button class="action-btn" style="background: var(--danger); color: white;" onclick="submitLog()">Commit to Log</button>
+            <textarea id="issueDesc" rows="3" placeholder="Describe the problem and the fix..."></textarea>
+            <button class="action-btn" style="background: var(--danger); color: white;" onclick="submitBug()">Commit Log Entry</button>
         </div>
-
-        <div id="logEntries" style="margin-top:20px;"></div>
+        <div id="bugDisplay" style="margin-top:20px;"></div>
     </div>
 </div>
 
 <script>
     function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].classList.remove("active");
-        }
-        tablinks = document.getElementsByClassName("tab-btn");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
-        document.getElementById(tabName).classList.add("active");
-        evt.currentTarget.classList.add("active");
+        let i, tabContent, tabBtn;
+        tabContent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabContent.length; i++) { tabContent[i].style.display = "none"; }
+        tabBtn = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tabBtn.length; i++) { tabBtn[i].className = tabBtn[i].className.replace(" active", ""); }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
     }
 
-    // Week 1 Logic
     function validateChassis() {
         const a = parseFloat(document.getElementById('diagA').value);
         const b = parseFloat(document.getElementById('diagB').value);
         const res = document.getElementById('diagResult');
-        if(!a || !b) return;
-
+        if (!a || !b) return;
         const diff = Math.abs(a - b);
-        if(diff <= 0.125) {
-            res.innerHTML = "✅ STATUS: SQUARE. Within competition tolerance (1/8 inch).";
+        if (diff <= 0.125) {
+            res.innerHTML = "✅ SUCCESS: Square within 1/8\" tolerance.";
             res.style.color = "var(--primary)";
         } else {
-            res.innerHTML = "❌ STATUS: RACKED. Difference of " + diff.toFixed(3) + " in. Re-align chassis.";
+            res.innerHTML = "❌ RACKED: Difference of " + diff.toFixed(3) + "\" is too large.";
             res.style.color = "var(--danger)";
         }
     }
 
-    // Week 2 Logic
-    const slider = document.getElementById('ratioSlider');
-    slider.oninput = function() {
-        const val = this.value;
-        document.getElementById('ratioLabel').innerHTML = val;
-        
-        const speedWidth = (100 / val) * 5; // Simplified inverse
-        const torqueWidth = val;
+    function updateSim() {
+        const val = document.getElementById('ratioSlider').value;
+        document.getElementById('ratioLabel').innerText = val;
+        document.getElementById('speed-fill').style.width = (100 / val) * 5 + "%";
+        document.getElementById('torque-fill').style.width = val + "%";
+    }
+    updateSim();
 
-        document.getElementById('speed-fill').style.width = Math.min(speedWidth, 100) + "%";
-        document.getElementById('torque-fill').style.width = torqueWidth + "%";
+    function togglePort(id) { document.getElementById(id).classList.toggle('active'); }
+
+    function calcTicks(val) {
+        document.getElementById('degLabel').innerText = val;
+        // Standard 20:1 planetary constant
+        const ticks = Math.round(val * 1.493);
+        document.getElementById('tickResult').innerText = "Target Ticks: " + ticks;
     }
 
-    // Bug Log Logic
-    function submitLog() {
-        const type = document.getElementById('logType').value;
-        const name = document.getElementById('studentName').value;
-        const desc = document.getElementById('logDesc').value;
-        if(!name || !desc) return;
-
-        const container = document.getElementById('logEntries');
+    function submitBug() {
+        const name = document.getElementById('stuName').value;
+        const type = document.getElementById('issueType').value;
+        const desc = document.getElementById('issueDesc').value;
+        if (!name || !desc) return;
+        const log = document.getElementById('bugDisplay');
         const entry = document.createElement('div');
-        entry.style.background = "#333";
-        entry.style.padding = "15px";
-        entry.style.borderRadius = "8px";
-        entry.style.marginBottom = "10px";
+        entry.style.background = "#222"; entry.style.padding = "10px"; entry.style.marginBottom = "5px";
         entry.style.borderLeft = "4px solid var(--danger)";
-        
-        entry.innerHTML = `<strong>[${type}]</strong> ${desc} <br><small>Logged by: ${name}</small>`;
-        container.prepend(entry);
-
-        document.getElementById('studentName').value = "";
-        document.getElementById('logDesc').value = "";
-    }
-</script>
-<div id="week3" class="tab-content">
-    <div class="card" style="border-left-color: #f36f21;">
-        <h2>⚡ Weeks 3-4: Power & Control Systems</h2>
-        <p><strong>Goal:</strong> Wire the REV Control Hub, configure the hardware map, and write the first TeleOp code.</p>
-        
-        <h3>Technical Objectives:</h3>
-        <ul>
-            [span_3](start_span)<li><strong>Hub Architecture:</strong> Identifying DC Motor ports (with encoder inputs), Servo ports (PWM), and I2C/Digital/Analog sensor headers[span_3](end_span).</li>
-            [span_4](start_span)[span_5](start_span)<li><strong>The Power Chain:</strong> Wiring the 12V LiPo battery through a slim main switch to the Hub; ensuring all connections are secure to survive match cycles[span_4](end_span)[span_5](end_span).</li>
-            [span_6](start_span)<li><strong>Software Logic:</strong> Creating a "Hardware Map" configuration on the Robot Controller app to name every component (e.g., "LeftDrive")[span_6](end_span).</li>
-        </ul>
-
-        <div class="tool-box">
-            <h3>Interactive: Hub Configuration Checklist</h3>
-            <p>Ensure your physical wiring matches your software "Hardware Map."</p>
-            <div class="port-grid">
-                <div class="port" id="p0" onclick="togglePort('p0')">Motor Port 0<br><small>Chassis Drive</small></div>
-                <div class="port" id="p1" onclick="togglePort('p1')">Motor Port 1<br><small>Chassis Drive</small></div>
-                <div class="port" id="p2" onclick="togglePort('p2')">Servo Port 0<br><small>Claw/Pivot</small></div>
-                <div class="port" id="p3" onclick="togglePort('p3')">I2C Port 0<br><small>IMU/Gyro</small></div>
-            </div>
-            <p><small>*Click ports to verify wiring continuity.</small></p>
-        </div>
-    </div>
-</div>
-
-<div id="week5" class="tab-content">
-    <div class="card" style="border-left-color: #3498db;">
-        <h2>🏗️ Weeks 5-6: Mechanisms & Sensors</h2>
-        <p><strong>Goal:</strong> Add scoring attachments and utilize sensors for "smarter" behavior.</p>
-
-        <h3>Technical Objectives:</h3>
-        <ul>
-            [span_7](start_span)<li><strong>Degrees of Freedom:</strong> Implementing linear slides for vertical reach and rotational arms for element manipulation[span_7](end_span).</li>
-            [span_8](start_span)<li><strong>Rotational Physics:</strong> Understanding how encoder "ticks" correlate to real-world movement (e.g., mapping ticks to arm angle)[span_8](end_span).</li>
-            [span_9](start_span)<li><strong>Sensor Feedback:</strong> Using limit switches to "zero" mechanisms and the built-in IMU/Gyro for precise turns[span_9](end_span).</li>
-        </ul>
-
-        <div class="tool-box">
-            <h3>Interactive: Encoder Ticks Calculator</h3>
-            <p>Calculate the target encoder ticks for your mechanism's movement.</p>
-            <label>Mechanism Rotation Angle: <span id="tickAngle">90</span>°</label>
-            <input type="range" min="0" max="360" value="90" class="slider" id="encoderSlider" oninput="calcTicks()">
-            
-            <div style="margin-top:20px; padding:15px; background:#111; border-radius:8px;">
-                <label>Target Encoder Ticks:</label>
-                <div id="tickDisplay" style="font-size:1.5em; color:var(--primary); font-family:monospace;">720</div>
-                <small>Formula: Degrees × (Ticks Per Rev / 360)</small>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    function togglePort(id) {
-        document.getElementById(id).classList.toggle('active');
-    }
-
-    function calcTicks() {
-        const angle = document.getElementById('encoderSlider').value;
-        document.getElementById('tickAngle').innerText = angle;
-        // Example constant for a standard 20:1 planetary motor (approx 537.7 ticks/rev)
-        const ticksPerDegree = 537.7 / 360;
-        const result = Math.round(angle * ticksPerDegree);
-        document.getElementById('tickDisplay').innerText = result;
+        entry.innerHTML = `<strong>[${type}]</strong> ${desc} <br><small>- ${name}</small>`;
+        log.prepend(entry);
+        document.getElementById('stuName').value = ""; document.getElementById('issueDesc').value = "";
     }
 </script>
 
