@@ -783,8 +783,9 @@ function goalHTML(icon,title,body){
 }
 
 function cardHTML(color,icon,title,items){
+  const arr=Array.isArray(items)?items:[items];
   return `<div class="card ${color}"><div class="card-icon">${icon}<\/div>
-    <h3>${title}<\/h3><ul>${items.map(i=>`<li>${i}<\/li>`).join('')}<\/ul><\/div>`;
+    <h3>${title}<\/h3><ul>${arr.map(i=>`<li>${i}<\/li>`).join('')}<\/ul><\/div>`;
 }
 
 function codeHTML(lines){ return `<div class="code-block">${lines.join('\n')}<\/div>`; }
@@ -907,9 +908,9 @@ function renderWeek1(){
       <\/div>
     <\/div>
     <div class="cards-grid reveal">
-      ${cardHTML('blue','F','Force','A push or pull in a straight line. F = m × a. Motors generate force to accelerate the robot across the field.')}
-      ${cardHTML('orange','τ','Torque','Rotational force = Force × lever arm (N·m). Gear ratios amplify torque at the cost of speed. τ = F × r.')}
-      ${cardHTML('purple','DoF','Degrees of Freedom','Tank drive = 2 DoF (forward + rotation). Mecanum = 3 DoF (adds strafing). More DoF = more maneuverability.')}
+      ${cardHTML('blue','F','Force',['A push or pull in a straight line.','F = m × a','Motors generate force to accelerate the robot across the field.','Units: Newtons (N)'])}
+      ${cardHTML('orange','τ','Torque',['Rotational force = Force × lever arm (N·m).','Gear ratios amplify torque at the cost of speed.','High ratio = more torque, less speed.','τ = F × r  |  Units: N·m'])}
+      ${cardHTML('purple','DoF','Degrees of Freedom',['Number of independent axes a robot can move in.','Tank drive = 2 DoF (forward + rotate).','Mecanum = 3 DoF (adds strafing sideways).','More DoF = more maneuverable robot.'])}
     <\/div>`
   ,true));
 
