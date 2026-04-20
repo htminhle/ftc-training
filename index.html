@@ -701,19 +701,19 @@ function renderCurrentWeek() {
   // hero
   const lines = w.title.split('\n');
   document.getElementById('weekHero').innerHTML = `
-    <div class="wh-tag">${w.label} of 10</div>
-    <div class="wh-title" style="color:${w.accent}">${lines[0]}<br><span style="color:white">${lines[1]||''}</span></div>
-    <p class="wh-sub">${w.subtitle}</p>
+    <div class="wh-tag">${w.label} of 10<\/div>
+    <div class="wh-title" style="color:${w.accent}">${lines[0]}<br><span style="color:white">${lines[1]||''}<\/span><\/div>
+    <p class="wh-sub">${w.subtitle}<\/p>
     <div class="wh-meta">${w.stats.map(s=>`
       <div class="wh-stat">
-        <span class="wh-stat-val" style="color:${w.accent}">${s.val}</span>
-        <span style="color:var(--gray);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1px">${s.label}</span>
-      </div>`).join('')}
-    </div>`;
+        <span class="wh-stat-val" style="color:${w.accent}">${s.val}<\/span>
+        <span style="color:var(--gray);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1px">${s.label}<\/span>
+      <\/div>`).join('')}
+    <\/div>`;
 
   // nav links
   document.getElementById('topBarLinks').innerHTML = w.navLinks.map(l=>
-    `<a class="sec-link" href="${l.href}">${l.label}</a>`).join('');
+    `<a class="sec-link" href="${l.href}">${l.label}<\/a>`).join('');
   document.getElementById('wsLabel').textContent = w.label;
 
   // prev/next buttons
@@ -770,35 +770,35 @@ function inject(html){ document.getElementById('weekContent').insertAdjacentHTML
 
 function sectionHTML(id,label,title,intro,accentColor,content,evenBg=false){
   return `<section class="week-section${evenBg?' alt':''}" id="${id}">
-    <p class="sec-label">${label}</p>
-    <h2 class="sec-title">${title}</h2>
-    ${intro?`<p class="sec-intro">${intro}</p>`:''}
+    <p class="sec-label">${label}<\/p>
+    <h2 class="sec-title">${title}<\/h2>
+    ${intro?`<p class="sec-intro">${intro}<\/p>`:''}
     ${content}
-  </section>`;
+  <\/section>`;
 }
 
 function goalHTML(icon,title,body){
-  return `<div class="goal-banner reveal"><div class="goal-icon">${icon}</div>
-    <div class="goal-text"><strong>${title}</strong><p>${body}</p></div></div>`;
+  return `<div class="goal-banner reveal"><div class="goal-icon">${icon}<\/div>
+    <div class="goal-text"><strong>${title}<\/strong><p>${body}<\/p><\/div><\/div>`;
 }
 
 function cardHTML(color,icon,title,items){
-  return `<div class="card ${color}"><div class="card-icon">${icon}</div>
-    <h3>${title}</h3><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
+  return `<div class="card ${color}"><div class="card-icon">${icon}<\/div>
+    <h3>${title}<\/h3><ul>${items.map(i=>`<li>${i}<\/li>`).join('')}<\/ul><\/div>`;
 }
 
-function codeHTML(lines){ return `<div class="code-block">${lines.join('\n')}</div>`; }
+function codeHTML(lines){ return `<div class="code-block">${lines.join('\n')}<\/div>`; }
 
 function checklistHTML(items){
   return `<ul class="checklist">${items.map(([ci,title,desc])=>
-    `<li><span class="ci">${ci}</span><span class="ct"><strong>${title}</strong>${desc}</span></li>`).join('')}</ul>`;
+    `<li><span class="ci">${ci}<\/span><span class="ct"><strong>${title}<\/strong>${desc}<\/span><\/li>`).join('')}<\/ul>`;
 }
 
 function compTableHTML(headers,rows){
   return `<table class="comp-table">
-    <thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
-    <tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
-  </table>`;
+    <thead><tr>${headers.map(h=>`<th>${h}<\/th>`).join('')}<\/tr><\/thead>
+    <tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}<\/td>`).join('')}<\/tr>`).join('')}<\/tbody>
+  <\/table>`;
 }
 
 /* ──────────── QUIZ ENGINE ──────────────────────────────────────── */
@@ -811,15 +811,15 @@ function initQuiz(containerId, questions){
     const q=questions[qi];
     c.innerHTML=`
       <div class="quiz-wrap">
-        <div class="q-progress">${questions.map((_,i)=>`<div class="q-dot${i<qi?' done':i===qi?' cur':''}"></div>`).join('')}</div>
-        <div class="q-num">Question ${qi+1} of ${questions.length}</div>
-        <div class="q-text">${q.q}</div>
-        <div class="q-opts">${q.opts.map((o,i)=>`<button class="q-opt" onclick="window._qans_${containerId}(${i},this)">${o}</button>`).join('')}</div>
-        <div class="q-fb" id="qfb_${containerId}"></div>
+        <div class="q-progress">${questions.map((_,i)=>`<div class="q-dot${i<qi?' done':i===qi?' cur':''}"><\/div>`).join('')}<\/div>
+        <div class="q-num">Question ${qi+1} of ${questions.length}<\/div>
+        <div class="q-text">${q.q}<\/div>
+        <div class="q-opts">${q.opts.map((o,i)=>`<button class="q-opt" onclick="window._qans_${containerId}(${i},this)">${o}<\/button>`).join('')}<\/div>
+        <div class="q-fb" id="qfb_${containerId}"><\/div>
         <button class="q-next" id="qnext_${containerId}" onclick="window._qnext_${containerId}()">
           ${qi<questions.length-1?'Next Question →':'See Results'}
-        </button>
-      </div>`;
+        <\/button>
+      <\/div>`;
     answered=false;
   }
 
@@ -842,12 +842,12 @@ function initQuiz(containerId, questions){
     if(qi<questions.length){render();}
     else{
       c.innerHTML=`<div class="quiz-wrap"><div class="q-score show">
-        <div class="q-score-num" style="color:${score>=Math.ceil(questions.length*.75)?'#81C784':'#EF9A9A'}">${score}/${questions.length}</div>
-        <div class="q-score-msg">${score>=Math.ceil(questions.length*.75)?'🎉 Excellent! Ready for the next week.':'Review the material above and try again.'}</div>
+        <div class="q-score-num" style="color:${score>=Math.ceil(questions.length*.75)?'#81C784':'#EF9A9A'}">${score}/${questions.length}<\/div>
+        <div class="q-score-msg">${score>=Math.ceil(questions.length*.75)?'🎉 Excellent! Ready for the next week.':'Review the material above and try again.'}<\/div>
         <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-          <button onclick="window._qrestart_${containerId}()" class="btn-primary">Try Again</button>
-        </div>
-      </div></div>`;
+          <button onclick="window._qrestart_${containerId}()" class="btn-primary">Try Again<\/button>
+        <\/div>
+      <\/div><\/div>`;
     }
   };
 
@@ -865,32 +865,32 @@ function renderWeek1(){
       ${cardHTML('blue','📐','Theory (60 min)',['Basic mechanics: force, torque, center of gravity','Degrees of freedom — how robots move in space','The kit ecosystem: GoBILDA, REV, Tetrix patterns','Hardware 101: bolt vs. screw, hex keys, Nylock nuts'])}
       ${cardHTML('teal','🔧','Hands-On (90 min)',['Groups of 2–3 students per robot','Build a 12"×12" square aluminum frame','Diagonal test: both diagonals must match ≤ 1/16"','Drop test: survives a 5 lb controlled drop'])}
       ${cardHTML('orange','📚','Home Study',['GM0 Hardware chapter at gm0.org','REV Robotics Getting Started playlist','Sketch your dream robot (label 3 subsystems)','Quiz: name 3 fastener types and their uses'])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-theory','Theory — 4 Topics','Basic Mechanics','Physics is what makes robots move, tip, stall, and win. These three concepts will come up every week for the entire season.',null,
     `<div class="two-col reveal" style="margin-bottom:28px">
       <div class="content-box">
-        <h3 style="color:#64B5F6">⚙️ Torque vs. Speed</h3>
-        <p class="sec-intro" style="margin-bottom:20px">Drag the slider to see how gear ratio trades torque for speed — you can never maximize both at once.</p>
+        <h3 style="color:#64B5F6">⚙️ Torque vs. Speed<\/h3>
+        <p class="sec-intro" style="margin-bottom:20px">Drag the slider to see how gear ratio trades torque for speed — you can never maximize both at once.<\/p>
         <div class="slider-row">
-          <span class="slider-label">Gear Ratio</span>
+          <span class="slider-label">Gear Ratio<\/span>
           <input type="range" id="gearSlider" min="5" max="100" value="20" step="5" oninput="updateGear()">
-          <span class="slider-val" id="gearVal">20:1</span>
-        </div>
-        <div class="bar-row"><div class="bar-label" style="color:#4DB6AC">💪 Torque</div>
-          <div class="bar-bg"><div class="bar-fill" id="torqueBar" style="width:20%;background:linear-gradient(90deg,var(--teal),#4DB6AC)"><span id="torqueNum">20%</span></div></div></div>
-        <div class="bar-row"><div class="bar-label" style="color:#FFAB76">⚡ Speed (RPM)</div>
-          <div class="bar-bg"><div class="bar-fill" id="speedBar" style="width:80%;background:linear-gradient(90deg,var(--orange),#FF8A50)"><span id="speedNum">80%</span></div></div></div>
-        <div class="insight-box" id="gearInsight">A 20:1 gearbox gives good speed — great for a drivetrain. Won't push heavy game elements well.</div>
-      </div>
+          <span class="slider-val" id="gearVal">20:1<\/span>
+        <\/div>
+        <div class="bar-row"><div class="bar-label" style="color:#4DB6AC">💪 Torque<\/div>
+          <div class="bar-bg"><div class="bar-fill" id="torqueBar" style="width:20%;background:linear-gradient(90deg,var(--teal),#4DB6AC)"><span id="torqueNum">20%<\/span><\/div><\/div><\/div>
+        <div class="bar-row"><div class="bar-label" style="color:#FFAB76">⚡ Speed (RPM)<\/div>
+          <div class="bar-bg"><div class="bar-fill" id="speedBar" style="width:80%;background:linear-gradient(90deg,var(--orange),#FF8A50)"><span id="speedNum">80%<\/span><\/div><\/div><\/div>
+        <div class="insight-box" id="gearInsight">A 20:1 gearbox gives good speed — great for a drivetrain. Won't push heavy game elements well.<\/div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:#81C784">⚖️ Center of Gravity</h3>
-        <p style="color:var(--steel);font-size:.93rem;line-height:1.6;margin-bottom:16px">The CoG is where the robot's weight effectively acts. Keep it LOW — below the wheel axle height.</p>
+        <h3 style="color:#81C784">⚖️ Center of Gravity<\/h3>
+        <p style="color:var(--steel);font-size:.93rem;line-height:1.6;margin-bottom:16px">The CoG is where the robot's weight effectively acts. Keep it LOW — below the wheel axle height.<\/p>
         <div style="display:flex;gap:10px;margin-bottom:14px">
-          <button onclick="setCogDemo('low',this)" class="btn-primary" style="flex:1;background:var(--green)">✓ Low CoG</button>
-          <button onclick="setCogDemo('high',this)" class="btn-outline" style="flex:1">✗ High CoG</button>
-        </div>
+          <button onclick="setCogDemo('low',this)" class="btn-primary" style="flex:1;background:var(--green)">✓ Low CoG<\/button>
+          <button onclick="setCogDemo('high',this)" class="btn-outline" style="flex:1">✗ High CoG<\/button>
+        <\/div>
         <div id="cogDisplay" style="background:rgba(0,0,0,.3);border-radius:8px;padding:16px;text-align:center">
           <svg viewBox="0 0 200 200" width="200" style="max-width:100%">
             <line x1="10" y1="185" x2="190" y2="185" stroke="#546E7A" stroke-width="2"/>
@@ -898,19 +898,19 @@ function renderWeek1(){
             <circle cx="145" cy="165" r="18" fill="#1A2A3A" stroke="#263238" stroke-width="3"/>
             <rect id="cogBody" x="40" y="125" width="120" height="32" rx="6" fill="#1565C0"/>
             <circle id="cogDot" cx="100" cy="141" r="9" fill="#F57F17" stroke="#E65100" stroke-width="2"/>
-            <text id="cogLabel" x="100" y="145" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="white">G</text>
-            <text id="cogStatus" x="100" y="14" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="13" fill="#81C784">LOW — STABLE ✓</text>
-            <defs><marker id="arr1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#E65100"/></marker></defs>
-          </svg>
-        </div>
-        <div style="font-size:.85rem;color:var(--steel);margin-top:10px;line-height:1.5;font-style:italic">Mount battery and Control Hub as low as possible on the frame rails.</div>
-      </div>
-    </div>
+            <text id="cogLabel" x="100" y="145" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="white">G<\/text>
+            <text id="cogStatus" x="100" y="14" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="13" fill="#81C784">LOW — STABLE ✓<\/text>
+            <defs><marker id="arr1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#E65100"/><\/marker><\/defs>
+          <\/svg>
+        <\/div>
+        <div style="font-size:.85rem;color:var(--steel);margin-top:10px;line-height:1.5;font-style:italic">Mount battery and Control Hub as low as possible on the frame rails.<\/div>
+      <\/div>
+    <\/div>
     <div class="cards-grid reveal">
       ${cardHTML('blue','F','Force','A push or pull in a straight line. F = m × a. Motors generate force to accelerate the robot across the field.')}
       ${cardHTML('orange','τ','Torque','Rotational force = Force × lever arm (N·m). Gear ratios amplify torque at the cost of speed. τ = F × r.')}
       ${cardHTML('purple','DoF','Degrees of Freedom','Tank drive = 2 DoF (forward + rotation). Mecanum = 3 DoF (adds strafing). More DoF = more maneuverability.')}
-    </div>`
+    <\/div>`
   ,true));
 
   inject(sectionHTML('w-fasteners','Theory — Hardware','Fasteners 101','Know your fasteners cold. A stripped bolt at a tournament costs 20 minutes you don\'t have.',null,
@@ -922,20 +922,20 @@ function renderWeek1(){
            ['Self-Tapping Screw','Plastic covers, 3D printed parts only','NEVER in aluminum — it strips the hole'],
            ['Standoff','Spacing boards, stacking plates, sensor mounts','Female M4 thread on both ends'],
            ['Thread-Lock (Loctite Blue)','High-vibration joints, gearbox bolts','Liquid — apply to bolt before threading in']])}
-      </div>
+      <\/div>
       <div style="display:flex;flex-direction:column;gap:14px">
         <div class="content-box">
-          <h3 style="color:var(--amber)">🔑 Hex Key Rules</h3>
+          <h3 style="color:var(--amber)">🔑 Hex Key Rules<\/h3>
           ${checklistHTML([
             ['✅','Long end into the bolt','Use for most work — more reach, less strip risk.'],
             ['⚠️','Short end for final tightening only','More torque = more strip risk. Use sparingly.'],
             ['❌','Never cross-thread','Start by hand first, feel for resistance before using the key.'],
             ['🔒','Snug, not torqued','Snug = no more movement felt. Tight ≠ better.'],
           ])}
-        </div>
-        <div class="insight-box">Golden Rule: if you're using force to make something fit — stop. Something is misaligned.</div>
-      </div>
-    </div>`
+        <\/div>
+        <div class="insight-box">Golden Rule: if you're using force to make something fit — stop. Something is misaligned.<\/div>
+      <\/div>
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-build','Hands-On','Build Steps','Follow in order. Click each step to expand. Mark done to track progress.',null,
@@ -952,20 +952,20 @@ function renderWeek1(){
         ['Use the long end of the hex key','Cross pattern: like tightening car lug nuts','Final check: Nylock nuts should not spin by hand','Re-measure diagonals after tightening'])}
       ${buildStep(6,'#C62828','5 min','The Drop Test','Hold 12" above the floor. Release flat. Pass = no bolts moved, diagonals still equal.',
         ['Hold frame horizontally at 12" (measure it)','Release — don\'t throw. Let gravity do the work','Check every corner by hand immediately','Re-measure diagonals: still ≤ 1/16" difference?','Fail: identify weak corner, tighten, re-test'])}
-    </div>`
+    <\/div>`
   ,true));
 
   inject(sectionHTML('w-quiz','Knowledge Check','Quick Quiz','Test what you\'ve learned. Need 4/5 to pass.',null,
-    `<div id="quiz_w1"></div>`
+    `<div id="quiz_w1"><\/div>`
   ,false));
 
   inject(sectionHTML('w-resources','Home Study','Resources & Links','Required reading and watching before Week 3.',null,
     `<div class="res-grid reveal">
-      <a class="res-card" href="https://gm0.org" target="_blank"><div class="res-type">📖 Required</div><div class="res-title">Game Manual 0 — Hardware</div><div class="res-desc">The FTC community bible. Hardware chapter covers everything from channel systems to motors to wiring.</div><span class="res-url">gm0.org</span></a>
-      <a class="res-card" href="https://docs.revrobotics.com" target="_blank"><div class="res-type">📚 Required</div><div class="res-title">REV Robotics Docs</div><div class="res-desc">Official documentation for the Control Hub, motors, and REV extrusion. Bookmark this.</div><span class="res-url">docs.revrobotics.com</span></a>
-      <a class="res-card" href="https://www.youtube.com/@REVRobotics" target="_blank"><div class="res-type">📺 Watch</div><div class="res-title">REV Robotics YouTube</div><div class="res-desc">Getting Started playlist. Official tutorials with real hardware demonstrations.</div><span class="res-url">youtube.com/@REVRobotics</span></a>
-      <div class="res-card"><div class="res-type">✏️ Challenge</div><div class="res-title">Take-Home Challenge</div><div class="res-desc">Sketch a robot concept, label 3 subsystems. Quiz yourself: diagonal test tolerance? M4 hex key size? Bring your sketch to Week 3.</div></div>
-    </div>`
+      <a class="res-card" href="https://gm0.org" target="_blank"><div class="res-type">📖 Required<\/div><div class="res-title">Game Manual 0 — Hardware<\/div><div class="res-desc">The FTC community bible. Hardware chapter covers everything from channel systems to motors to wiring.<\/div><span class="res-url">gm0.org<\/span><\/a>
+      <a class="res-card" href="https://docs.revrobotics.com" target="_blank"><div class="res-type">📚 Required<\/div><div class="res-title">REV Robotics Docs<\/div><div class="res-desc">Official documentation for the Control Hub, motors, and REV extrusion. Bookmark this.<\/div><span class="res-url">docs.revrobotics.com<\/span><\/a>
+      <a class="res-card" href="https://www.youtube.com/@REVRobotics" target="_blank"><div class="res-type">📺 Watch<\/div><div class="res-title">REV Robotics YouTube<\/div><div class="res-desc">Getting Started playlist. Official tutorials with real hardware demonstrations.<\/div><span class="res-url">youtube.com/@REVRobotics<\/span><\/a>
+      <div class="res-card"><div class="res-type">✏️ Challenge<\/div><div class="res-title">Take-Home Challenge<\/div><div class="res-desc">Sketch a robot concept, label 3 subsystems. Quiz yourself: diagonal test tolerance? M4 hex key size? Bring your sketch to Week 3.<\/div><\/div>
+    <\/div>`
   ,true));
 
   setTimeout(()=>{
@@ -982,16 +982,16 @@ function renderWeek1(){
 
 function buildStep(n,color,time,title,desc,details){
   return `<div class="t-step reveal" onclick="this.classList.toggle('open')">
-    <div class="t-num" style="background:${color}22;color:${color};border:2px solid ${color}44">${n}</div>
+    <div class="t-num" style="background:${color}22;color:${color};border:2px solid ${color}44">${n}<\/div>
     <div class="t-body">
-      <div class="t-time">⏱ ${time}</div>
-      <div class="t-title">${title}</div>
-      <div class="t-desc">${desc}</div>
+      <div class="t-time">⏱ ${time}<\/div>
+      <div class="t-title">${title}<\/div>
+      <div class="t-desc">${desc}<\/div>
       <div style="display:none;margin-top:10px;background:rgba(0,0,0,.2);border-radius:8px;padding:14px 18px" class="step-detail">
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px">${details.map(d=>`<li style="display:flex;gap:8px;font-size:.88rem;color:var(--steel)"><span style="color:var(--accent);flex-shrink:0">✦</span>${d}</li>`).join('')}</ul>
-      </div>
-    </div>
-  </div>`;
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px">${details.map(d=>`<li style="display:flex;gap:8px;font-size:.88rem;color:var(--steel)"><span style="color:var(--accent);flex-shrink:0">✦<\/span>${d}<\/li>`).join('')}<\/ul>
+      <\/div>
+    <\/div>
+  <\/div>`;
 }
 
 function initInteractiveW1(){
@@ -1042,7 +1042,7 @@ function renderWeek2(){
       ${cardHTML('teal','⚙️','Theory (30 min)',['Torque vs. speed — gear ratio deep dive','Drivetrain types: Tank, Mecanum, Swerve comparison','Motor wiring polarity and rotation direction','Center of gravity for rolling chassis'])}
       ${cardHTML('blue','🔧','Hands-On (90 min)',['Mount 4 DC motors to the chassis rails','Attach wheels (traction or Mecanum)','Wire motors directly to battery with temporary leads','Roll Test: verify all 4 wheels spin forward together'])}
       ${cardHTML('orange','📚','Home Study',['Research "center of gravity" — why low prevents tipping','Watch: REV HD Hex Motor overview video','Read GM0: Drivetrains chapter','Sketch your ideal drivetrain with measurements'])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-theory','Theory','Drivetrain Physics','Choosing the wrong drivetrain is one of the most expensive mistakes a team makes. Choose based on the game strategy, not what looks coolest.',null,
@@ -1053,26 +1053,26 @@ function renderWeek2(){
        ['West Coast Drive','Very fast, excellent pushing, reliable','No strafe, wider turning radius','Speed-dominated games'],
        ['Swerve Drive','Full omni movement + full pushing power','Extremely complex to build and program','Advanced teams, usually not worth it in FTC'],
        ['H-Drive','Strafe via center wheel, simpler than Mecanum','Limited traction, center wheel often slips','Simple strafing needs with tank-drive simplicity']])}
-    </div>
+    <\/div>
     <div class="two-col reveal">
       <div class="content-box">
-        <h3 style="color:#4DB6AC">Motor & Gear Selection</h3>
-        <div class="info-row"><span class="info-emoji">⚡</span><p><strong>REV HD Hex Motor</strong> — 312 RPM at 40:1. The FTC workhorse. Used for drivetrain and most mechanisms.</p></div>
-        <div class="info-row"><span class="info-emoji">🔩</span><p><strong>Gear Ratio (Motor → Wheel)</strong> — FTC drivetrains typically run 1:1 to 2:1 reduction externally. Built-in gearbox does the heavy lifting.</p></div>
-        <div class="info-row"><span class="info-emoji">📏</span><p><strong>Wheel diameter matters</strong> — larger wheel = faster top speed, less torque. Typical: 96mm–104mm for FTC.</p></div>
-        <div class="info-row"><span class="info-emoji">🔄</span><p><strong>Motor polarity</strong> — swap the two wires to reverse direction. In software you can also set <code>motor.setDirection(REVERSE)</code>.</p></div>
-      </div>
+        <h3 style="color:#4DB6AC">Motor & Gear Selection<\/h3>
+        <div class="info-row"><span class="info-emoji">⚡<\/span><p><strong>REV HD Hex Motor<\/strong> — 312 RPM at 40:1. The FTC workhorse. Used for drivetrain and most mechanisms.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">🔩<\/span><p><strong>Gear Ratio (Motor → Wheel)<\/strong> — FTC drivetrains typically run 1:1 to 2:1 reduction externally. Built-in gearbox does the heavy lifting.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">📏<\/span><p><strong>Wheel diameter matters<\/strong> — larger wheel = faster top speed, less torque. Typical: 96mm–104mm for FTC.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">🔄<\/span><p><strong>Motor polarity<\/strong> — swap the two wires to reverse direction. In software you can also set <code>motor.setDirection(REVERSE)<\/code>.<\/p><\/div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:#4DB6AC">How Mecanum Wheels Work</h3>
-        <p style="color:var(--steel);font-size:.92rem;line-height:1.65;margin-bottom:16px">Mecanum wheels have rollers at 45° on the rim. By spinning each wheel in specific combinations, the lateral forces cancel or combine to produce movement in any direction.</p>
+        <h3 style="color:#4DB6AC">How Mecanum Wheels Work<\/h3>
+        <p style="color:var(--steel);font-size:.92rem;line-height:1.65;margin-bottom:16px">Mecanum wheels have rollers at 45° on the rim. By spinning each wheel in specific combinations, the lateral forces cancel or combine to produce movement in any direction.<\/p>
         ${compTableHTML(['Movement','FL','FR','RL','RR'],
           [['Forward','FWD','FWD','FWD','FWD'],
            ['Backward','REV','REV','REV','REV'],
            ['Strafe Right','FWD','REV','REV','FWD'],
            ['Strafe Left','REV','FWD','FWD','REV'],
            ['Rotate CW','FWD','REV','FWD','REV']])}
-      </div>
-    </div>`
+      <\/div>
+    <\/div>`
   ,true));
 
   inject(sectionHTML('w-drivetrain','Hands-On Theory','The Roll Test','The roll test is simple but critical. Every wheel must spin in the right direction before you wire to the Control Hub.',null,
@@ -1086,16 +1086,16 @@ function renderWeek2(){
           ['5️⃣','Roll Test — Backward','Reverse polarity on battery leads. All 4 wheels must now spin backward together.'],
           ['6️⃣','Document polarity','Note which motors needed wire-swapping. You\'ll need this when configuring in software next week.'],
         ])}
-      </div>
+      <\/div>
       <div class="content-box" style="align-self:start">
-        <h3 style="color:#EF9A9A">⚠️ Common Wiring Mistakes</h3>
-        <div class="info-row"><span class="info-emoji">🔴</span><p><strong>Crossing red/black wires</strong> — motors run backward. Diagnose by watching which direction each wheel spins.</p></div>
-        <div class="info-row"><span class="info-emoji">🔗</span><p><strong>Loose set screws</strong> — wheel slips on motor shaft mid-match. Always use the included hex key and check torque.</p></div>
-        <div class="info-row"><span class="info-emoji">⚖️</span><p><strong>High CoG chassis</strong> — top-heavy robots tip during fast turns. Keep motors and battery low.</p></div>
-        <div class="info-row"><span class="info-emoji">📐</span><p><strong>Misaligned wheels</strong> — if wheels aren't parallel to each other, the robot will crab-walk. Check visually from above.</p></div>
-        <div class="insight-box">If the robot pulls to one side when you command straight — one motor is reversed in software or the wiring has mixed polarity.</div>
-      </div>
-    </div>`
+        <h3 style="color:#EF9A9A">⚠️ Common Wiring Mistakes<\/h3>
+        <div class="info-row"><span class="info-emoji">🔴<\/span><p><strong>Crossing red/black wires<\/strong> — motors run backward. Diagnose by watching which direction each wheel spins.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">🔗<\/span><p><strong>Loose set screws<\/strong> — wheel slips on motor shaft mid-match. Always use the included hex key and check torque.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">⚖️<\/span><p><strong>High CoG chassis<\/strong> — top-heavy robots tip during fast turns. Keep motors and battery low.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">📐<\/span><p><strong>Misaligned wheels<\/strong> — if wheels aren't parallel to each other, the robot will crab-walk. Check visually from above.<\/p><\/div>
+        <div class="insight-box">If the robot pulls to one side when you command straight — one motor is reversed in software or the wiring has mixed polarity.<\/div>
+      <\/div>
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-build','Build Checklist','Week 3–4 Deliverables','Complete all items before moving to Week 5–6.',null,
@@ -1108,15 +1108,15 @@ function renderWeek2(){
     ])}`
   ,true));
 
-  inject(sectionHTML('w-quiz','Knowledge Check','Drivetrain Quiz','Test your drivetrain knowledge.',null,`<div id="quiz_w2"></div>`,false));
+  inject(sectionHTML('w-quiz','Knowledge Check','Drivetrain Quiz','Test your drivetrain knowledge.',null,`<div id="quiz_w2"><\/div>`,false));
 
   inject(sectionHTML('w-resources','Home Study','Resources',null,null,
     `<div class="res-grid reveal">
-      <a class="res-card" href="https://gm0.org" target="_blank"><div class="res-type">📖 Required</div><div class="res-title">GM0: Drivetrains Chapter</div><div class="res-desc">Comprehensive comparison of every FTC drivetrain type with real team advice on which to choose.</div><span class="res-url">gm0.org/docs/drivetrains</span></a>
-      <a class="res-card" href="https://docs.revrobotics.com" target="_blank"><div class="res-type">📚 Required</div><div class="res-title">REV HD Hex Motor Docs</div><div class="res-desc">Motor specs, gear ratios, mounting patterns, and wiring diagrams for the HD Hex motor.</div><span class="res-url">docs.revrobotics.com</span></a>
-      <a class="res-card" href="https://www.gobilda.com" target="_blank"><div class="res-type">🔩 Reference</div><div class="res-title">GoBILDA Motor & Wheel Catalog</div><div class="res-desc">Browse drivetrain components including Yellow Jacket motors, wheels, hubs, and bearings.</div><span class="res-url">gobilda.com</span></a>
-      <div class="res-card"><div class="res-type">✏️ Challenge</div><div class="res-title">Design Your Drivetrain</div><div class="res-desc">Sketch your chosen drivetrain from above. Label: motor positions, wheel type, battery placement, estimated CoG location. Bring to Week 5.</div></div>
-    </div>`
+      <a class="res-card" href="https://gm0.org" target="_blank"><div class="res-type">📖 Required<\/div><div class="res-title">GM0: Drivetrains Chapter<\/div><div class="res-desc">Comprehensive comparison of every FTC drivetrain type with real team advice on which to choose.<\/div><span class="res-url">gm0.org/docs/drivetrains<\/span><\/a>
+      <a class="res-card" href="https://docs.revrobotics.com" target="_blank"><div class="res-type">📚 Required<\/div><div class="res-title">REV HD Hex Motor Docs<\/div><div class="res-desc">Motor specs, gear ratios, mounting patterns, and wiring diagrams for the HD Hex motor.<\/div><span class="res-url">docs.revrobotics.com<\/span><\/a>
+      <a class="res-card" href="https://www.gobilda.com" target="_blank"><div class="res-type">🔩 Reference<\/div><div class="res-title">GoBILDA Motor & Wheel Catalog<\/div><div class="res-desc">Browse drivetrain components including Yellow Jacket motors, wheels, hubs, and bearings.<\/div><span class="res-url">gobilda.com<\/span><\/a>
+      <div class="res-card"><div class="res-type">✏️ Challenge<\/div><div class="res-title">Design Your Drivetrain<\/div><div class="res-desc">Sketch your chosen drivetrain from above. Label: motor positions, wheel type, battery placement, estimated CoG location. Bring to Week 5.<\/div><\/div>
+    <\/div>`
   ,true));
 
   setTimeout(()=>initQuiz('quiz_w2',[
@@ -1138,8 +1138,8 @@ function renderWeek3(){
     `<div class="cards-grid reveal">
       ${cardHTML('orange','⚡','Theory (30 min)',['REV Control Hub: port types and their limits','Driver Station ↔ Control Hub via Wi-Fi Direct','FTC SDK overview: OpModes, TeleOp, Autonomous','Blocks IDE vs. OnBot Java vs. Android Studio'])}
       ${cardHTML('teal','🔧','Hands-On (90 min)',['Wire motors and battery to Control Hub','Configure robot hardware on Driver Station','Download sample TeleOp Blocks or Java program','Drive through a floor obstacle course'])}
-      ${cardHTML('blue','📚','Home Study',['Intro to Onshape for FTC (CAD basics)','Watch: FTC programming tutorial series','Read SDK documentation: HardwareMap and OpMode','Try modifying gamepad controls to left stick']})}
-    </div>`
+      ${cardHTML('blue','📚','Home Study',['Intro to Onshape for FTC (CAD basics)','Watch: FTC programming tutorial series','Read SDK documentation: HardwareMap and OpMode','Try modifying gamepad controls to left stick'])}
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-theory','Theory','The Control Hub','The REV Control Hub is the brain of your FTC robot. Everything connects to it. Understanding its ports is non-negotiable.',null,
@@ -1152,81 +1152,81 @@ function renderWeek3(){
            ['Analog In (0–3)','4','Potentiometers, analog distance','0–5V range'],
            ['I²C (0–3)','4','Color, distance, gyro (IMU), external hub','400kHz bus'],
            ['USB Type A','1','Webcam, USB sensors','5V @500mA']])}
-        <div class="insight-box" style="margin-top:14px">The IMU (gyroscope/accelerometer) is built INTO the Control Hub — no wiring needed for basic heading control.</div>
-      </div>
+        <div class="insight-box" style="margin-top:14px">The IMU (gyroscope/accelerometer) is built INTO the Control Hub — no wiring needed for basic heading control.<\/div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:#FFAB76">Communication Architecture</h3>
-        <div class="info-row"><span class="info-emoji">📱</span><p><strong>Driver Hub (or Android phone)</strong> runs the Driver Station app. This is what drivers use during the match.</p></div>
-        <div class="info-row"><span class="info-emoji">📡</span><p><strong>Wi-Fi Direct</strong> connects Driver Hub to Control Hub. No router needed — they talk directly.</p></div>
-        <div class="info-row"><span class="info-emoji">🧠</span><p><strong>Control Hub</strong> runs the Robot Controller app and executes your OpMode code.</p></div>
-        <div class="info-row"><span class="info-emoji">⚡</span><p><strong>12V LiPo battery</strong> powers the Control Hub. The Hub regulates voltage for motors, servos, and electronics.</p></div>
-        <div class="info-row"><span class="info-emoji">🔴</span><p><strong>Main power switch</strong> is required by FTC rules — it must cut all robot power instantly.</p></div>
-        <div class="info-row"><span class="info-emoji">🟢</span><p><strong>LED indicator</strong> on the hub shows connection status — green means connected and ready.</p></div>
-      </div>
-    </div>`
+        <h3 style="color:#FFAB76">Communication Architecture<\/h3>
+        <div class="info-row"><span class="info-emoji">📱<\/span><p><strong>Driver Hub (or Android phone)<\/strong> runs the Driver Station app. This is what drivers use during the match.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">📡<\/span><p><strong>Wi-Fi Direct<\/strong> connects Driver Hub to Control Hub. No router needed — they talk directly.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">🧠<\/span><p><strong>Control Hub<\/strong> runs the Robot Controller app and executes your OpMode code.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">⚡<\/span><p><strong>12V LiPo battery<\/strong> powers the Control Hub. The Hub regulates voltage for motors, servos, and electronics.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">🔴<\/span><p><strong>Main power switch<\/strong> is required by FTC rules — it must cut all robot power instantly.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">🟢<\/span><p><strong>LED indicator<\/strong> on the hub shows connection status — green means connected and ready.<\/p><\/div>
+      <\/div>
+    <\/div>`
   ,true));
 
   inject(sectionHTML('w-code','Theory','Your First Code','The FTC SDK is built on Java. Every program is an OpMode. Here are the two types you\'ll write all season.',null,
     `<div class="two-col reveal">
       <div class="content-box">
-        <h3 style="color:var(--accent)">TeleOp — Driver Controlled</h3>
-        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">Runs during the 2-minute driver-controlled period. Reads gamepad inputs and commands motors in real time.</p>
+        <h3 style="color:var(--accent)">TeleOp — Driver Controlled<\/h3>
+        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">Runs during the 2-minute driver-controlled period. Reads gamepad inputs and commands motors in real time.<\/p>
         ${codeHTML([
-          `<span class="comment">// Basic TeleOp structure (Java)</span>`,
-          `<span class="kw">@TeleOp</span>(name=<span class="str">"My TeleOp"</span>)`,
-          `<span class="kw">public class</span> <span class="cls">MyTeleOp</span> <span class="kw">extends</span> <span class="cls">LinearOpMode</span> {`,
+          `<span class="comment">// Basic TeleOp structure (Java)<\/span>`,
+          `<span class="kw">@TeleOp<\/span>(name=<span class="str">"My TeleOp"<\/span>)`,
+          `<span class="kw">public class<\/span> <span class="cls">MyTeleOp<\/span> <span class="kw">extends<\/span> <span class="cls">LinearOpMode<\/span> {`,
           ``,
-          `  <span class="cls">DcMotor</span> frontLeft, frontRight;`,
-          `  <span class="cls">DcMotor</span> backLeft, backRight;`,
+          `  <span class="cls">DcMotor<\/span> frontLeft, frontRight;`,
+          `  <span class="cls">DcMotor<\/span> backLeft, backRight;`,
           ``,
-          `  <span class="kw">public void</span> <span class="fn">runOpMode</span>() {`,
-          `    <span class="comment">// 1. Get motors from hardware map</span>`,
-          `    frontLeft = hardwareMap.<span class="fn">get</span>(DcMotor.class, <span class="str">"fl"</span>);`,
-          `    <span class="comment">// ... repeat for other 3 motors</span>`,
+          `  <span class="kw">public void<\/span> <span class="fn">runOpMode<\/span>() {`,
+          `    <span class="comment">// 1. Get motors from hardware map<\/span>`,
+          `    frontLeft = hardwareMap.<span class="fn">get<\/span>(DcMotor.class, <span class="str">"fl"<\/span>);`,
+          `    <span class="comment">// ... repeat for other 3 motors<\/span>`,
           ``,
-          `    waitForStart(); <span class="comment">// wait for START button</span>`,
+          `    waitForStart(); <span class="comment">// wait for START button<\/span>`,
           ``,
-          `    <span class="kw">while</span> (opModeIsActive()) {`,
-          `      <span class="comment">// 2. Read gamepad input</span>`,
-          `      <span class="kw">double</span> drive = -gamepad1.left_stick_y;`,
-          `      <span class="kw">double</span> turn  =  gamepad1.right_stick_x;`,
+          `    <span class="kw">while<\/span> (opModeIsActive()) {`,
+          `      <span class="comment">// 2. Read gamepad input<\/span>`,
+          `      <span class="kw">double<\/span> drive = -gamepad1.left_stick_y;`,
+          `      <span class="kw">double<\/span> turn  =  gamepad1.right_stick_x;`,
           ``,
-          `      <span class="comment">// 3. Command motors</span>`,
-          `      frontLeft.<span class="fn">setPower</span>(drive + turn);`,
-          `      frontRight.<span class="fn">setPower</span>(drive - turn);`,
+          `      <span class="comment">// 3. Command motors<\/span>`,
+          `      frontLeft.<span class="fn">setPower<\/span>(drive + turn);`,
+          `      frontRight.<span class="fn">setPower<\/span>(drive - turn);`,
           `    }`,
           `  }`,
           `}`
         ])}
-      </div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:var(--accent)">Autonomous — Pre-Programmed</h3>
-        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">Runs during the 30-second autonomous period. No driver input — the robot executes a pre-planned sequence.</p>
+        <h3 style="color:var(--accent)">Autonomous — Pre-Programmed<\/h3>
+        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">Runs during the 30-second autonomous period. No driver input — the robot executes a pre-planned sequence.<\/p>
         ${codeHTML([
-          `<span class="comment">// Basic Autonomous structure</span>`,
-          `<span class="kw">@Autonomous</span>(name=<span class="str">"My Auto"</span>)`,
-          `<span class="kw">public class</span> <span class="cls">MyAuto</span> <span class="kw">extends</span> <span class="cls">LinearOpMode</span> {`,
+          `<span class="comment">// Basic Autonomous structure<\/span>`,
+          `<span class="kw">@Autonomous<\/span>(name=<span class="str">"My Auto"<\/span>)`,
+          `<span class="kw">public class<\/span> <span class="cls">MyAuto<\/span> <span class="kw">extends<\/span> <span class="cls">LinearOpMode<\/span> {`,
           ``,
-          `  <span class="kw">public void</span> <span class="fn">runOpMode</span>() {`,
-          `    <span class="comment">// Setup code here...</span>`,
+          `  <span class="kw">public void<\/span> <span class="fn">runOpMode<\/span>() {`,
+          `    <span class="comment">// Setup code here...<\/span>`,
           `    waitForStart();`,
           ``,
-          `    <span class="comment">// Drive forward for 2 seconds</span>`,
-          `    frontLeft.<span class="fn">setPower</span>(<span class="num">0.5</span>);`,
-          `    frontRight.<span class="fn">setPower</span>(<span class="num">0.5</span>);`,
-          `    <span class="fn">sleep</span>(<span class="num">2000</span>); <span class="comment">// 2000ms = 2 seconds</span>`,
+          `    <span class="comment">// Drive forward for 2 seconds<\/span>`,
+          `    frontLeft.<span class="fn">setPower<\/span>(<span class="num">0.5<\/span>);`,
+          `    frontRight.<span class="fn">setPower<\/span>(<span class="num">0.5<\/span>);`,
+          `    <span class="fn">sleep<\/span>(<span class="num">2000<\/span>); <span class="comment">// 2000ms = 2 seconds<\/span>`,
           ``,
-          `    <span class="comment">// Stop all motors</span>`,
-          `    frontLeft.<span class="fn">setPower</span>(<span class="num">0</span>);`,
-          `    frontRight.<span class="fn">setPower</span>(<span class="num">0</span>);`,
+          `    <span class="comment">// Stop all motors<\/span>`,
+          `    frontLeft.<span class="fn">setPower<\/span>(<span class="num">0<\/span>);`,
+          `    frontRight.<span class="fn">setPower<\/span>(<span class="num">0<\/span>);`,
           `  }`,
           `}`
         ])}
-        <div class="insight-box" style="margin-top:14px">Time-based autonomous is a starting point. In Week 7–8 you'll use encoders for precise distance control — much more reliable.</div>
-      </div>
-    </div>
+        <div class="insight-box" style="margin-top:14px">Time-based autonomous is a starting point. In Week 7–8 you'll use encoders for precise distance control — much more reliable.<\/div>
+      <\/div>
+    <\/div>
     <div class="content-box reveal" style="margin-top:20px">
-      <h3 style="color:var(--accent)">SDK Vocabulary Cheat Sheet</h3>
+      <h3 style="color:var(--accent)">SDK Vocabulary Cheat Sheet<\/h3>
       ${compTableHTML(['Term','What It Is'],
         [['HardwareMap','Connects code names to physical hardware — how you get a reference to a motor or sensor in code'],
          ['OpMode','The base class for all FTC programs. LinearOpMode is the easier version most teams use'],
@@ -1235,7 +1235,7 @@ function renderWeek3(){
          ['opModeIsActive()','Returns true while the OpMode is running — put your main loop inside while(opModeIsActive())'],
          ['telemetry','Built-in logging system — telemetry.addData("label", value) shows data on Driver Station screen'],
          ['gamepad1/gamepad2','Direct access to both gamepads — gamepad1.left_stick_y, gamepad1.a, gamepad1.left_bumper, etc.']])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-build','Hands-On','Build & Code Steps','Complete in order. The floor maze is the test.',null,
@@ -1245,17 +1245,17 @@ function renderWeek3(){
       ${buildStep(3,'#00897B','20 min','Load Sample Program','Download BasicOpMode_Iterative sample or use Blocks. Modify motor names to match config.',['In OnBot Java: paste a basic TeleOp template','Set motor names to match your hardware config exactly','Build the code (wrench icon) — fix any errors in red'])}
       ${buildStep(4,'#4527A0','15 min','Drive Test','Press START, drive through the floor maze. Robot must move forward, backward, and turn on command.',['Place tape on floor to create an L-shaped obstacle course','Drive forward 6 feet without hitting walls','Turn 90° and drive another 6 feet','Reverse back to start — try not to hit any obstacles'])}
       ${buildStep(5,'#2E7D32','20 min','Add a Servo','Map a servo to a gamepad button. Test open/close range.',['Add servo port wiring to Control Hub port 0','In code: Servo clawServo = hardwareMap.get(Servo.class, "claw")','gamepad1.a → clawServo.setPosition(0.0) for open','gamepad1.b → clawServo.setPosition(1.0) for closed'])}
-    </div>`
+    <\/div>`
   ,true));
 
-  inject(sectionHTML('w-quiz','Knowledge Check','Control System Quiz',null,null,`<div id="quiz_w3"></div>`,false));
+  inject(sectionHTML('w-quiz','Knowledge Check','Control System Quiz',null,null,`<div id="quiz_w3"><\/div>`,false));
   inject(sectionHTML('w-resources','Home Study','Resources',null,null,
     `<div class="res-grid reveal">
-      <a class="res-card" href="https://docs.revrobotics.com/duo-control/control-hub-gs" target="_blank"><div class="res-type">📖 Required</div><div class="res-title">Control Hub Getting Started</div><div class="res-desc">Official wiring guide, port reference, and first-time setup walkthrough.</div><span class="res-url">docs.revrobotics.com</span></a>
-      <a class="res-card" href="https://ftc-docs.firstinspires.org" target="_blank"><div class="res-type">📚 Required</div><div class="res-title">FTC SDK Documentation</div><div class="res-desc">Official programming reference for OpModes, HardwareMap, motors, servos, and gamepads.</div><span class="res-url">ftc-docs.firstinspires.org</span></a>
-      <a class="res-card" href="https://www.learnroadrunner.com" target="_blank"><div class="res-type">🚀 Advanced</div><div class="res-title">Learn Road Runner</div><div class="res-desc">When you\'re ready for motion planning and path following, this is the go-to resource.</div><span class="res-url">learnroadrunner.com</span></a>
-      <div class="res-card"><div class="res-type">✏️ Challenge</div><div class="res-title">Modify the TeleOp</div><div class="res-desc">Change the code so the LEFT stick controls drive and the RIGHT stick controls turning. Then add: hold left bumper to halve all motor speeds (for precision driving).</div></div>
-    </div>`
+      <a class="res-card" href="https://docs.revrobotics.com/duo-control/control-hub-gs" target="_blank"><div class="res-type">📖 Required<\/div><div class="res-title">Control Hub Getting Started<\/div><div class="res-desc">Official wiring guide, port reference, and first-time setup walkthrough.<\/div><span class="res-url">docs.revrobotics.com<\/span><\/a>
+      <a class="res-card" href="https://ftc-docs.firstinspires.org" target="_blank"><div class="res-type">📚 Required<\/div><div class="res-title">FTC SDK Documentation<\/div><div class="res-desc">Official programming reference for OpModes, HardwareMap, motors, servos, and gamepads.<\/div><span class="res-url">ftc-docs.firstinspires.org<\/span><\/a>
+      <a class="res-card" href="https://www.learnroadrunner.com" target="_blank"><div class="res-type">🚀 Advanced<\/div><div class="res-title">Learn Road Runner<\/div><div class="res-desc">When you\'re ready for motion planning and path following, this is the go-to resource.<\/div><span class="res-url">learnroadrunner.com<\/span><\/a>
+      <div class="res-card"><div class="res-type">✏️ Challenge<\/div><div class="res-title">Modify the TeleOp<\/div><div class="res-desc">Change the code so the LEFT stick controls drive and the RIGHT stick controls turning. Then add: hold left bumper to halve all motor speeds (for precision driving).<\/div><\/div>
+    <\/div>`
   ,true));
 
   setTimeout(()=>initQuiz('quiz_w3',[
@@ -1277,7 +1277,7 @@ function renderWeek4(){
       ${cardHTML('purple','🦾','Theory (30 min)',['Linear slides vs. rotational arms — pros and cons','Servo vs. DC motor: when to use each','Motor encoders: counting ticks → measuring distance','IMU / Gyroscope: reading heading for turns'])}
       ${cardHTML('blue','🔧','Hands-On (90 min)',['Mount servo-powered claw or intake mechanism','Code encoder-based drive: exactly 24 inches','Code gyro-based turn: exactly 90° right','Test: can the bot autonomously drive a square?'])}
       ${cardHTML('teal','📚','Home Study',['Read GM0: Mechanisms chapter','Watch: FTC encoder tutorial videos','Read GM0: Sensors chapter','Bonus: research roadrunner motion profiling'])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-theory','Theory','Mechanisms','Every FTC game requires you to interact with game elements — pick up, move, score. These are the building blocks.',null,
@@ -1290,9 +1290,9 @@ function renderWeek4(){
            ['Claw (Servo)','Servo opens and closes gripper fingers','Pick and place specific objects precisely'],
            ['Flip/Dump','Hinged bucket that tips contents','Dump collected game elements into scoring zones'],
            ['Turret','Rotates mechanism independently of chassis','Aim without moving the whole robot']])}
-      </div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:#B39DDB">Servo vs. DC Motor</h3>
+        <h3 style="color:#B39DDB">Servo vs. DC Motor<\/h3>
         ${compTableHTML(['Property','Servo','DC Motor'],
           [['Position control','Built-in (0–180°)','Needs encoder + PID'],
            ['Continuous rotation','Only with continuous servo','Default behavior'],
@@ -1300,9 +1300,9 @@ function renderWeek4(){
            ['Speed control','Limited','Full range'],
            ['Best for','Claws, flippers, turrets','Drives, lifts, intakes'],
            ['FTC port','Servo port (0–5)','Motor port (0–3)']])}
-        <div class="insight-box" style="margin-top:12px">Rule of thumb: if you need to hold a precise position — use a servo. If you need continuous rotation or high torque — use a DC motor.</div>
-      </div>
-    </div>`
+        <div class="insight-box" style="margin-top:12px">Rule of thumb: if you need to hold a precise position — use a servo. If you need continuous rotation or high torque — use a DC motor.<\/div>
+      <\/div>
+    <\/div>`
   ,true));
 
   inject(sectionHTML('w-sensors','Theory','Sensors & Encoders','Sensors turn a dumb machine into a smart one. These are the most important sensors in FTC.',null,
@@ -1313,31 +1313,31 @@ function renderWeek4(){
       ${cardHTML('orange','📡','Distance Sensor (REV 2m)',['Time-of-flight: measures distance to nearest object','Range: ~2cm to 200cm','Use to stop before hitting walls','Detect when an element is collected in intake'])}
       ${cardHTML('green','👆','Touch / Limit Switch',['Digital: ON or OFF only','Use to zero a linear slide safely','Detect end-of-travel positions','Prevent over-extension that would break mechanisms'])}
       ${cardHTML('amber','📷','Webcam / Vision',['Detect AprilTags for precise field localization','Identify randomized game elements','OpenCV + EasyOpenCV library for custom detection','Required for advanced autonomous routines'])}
-    </div>
+    <\/div>
 
     <div class="content-box reveal" style="margin-top:24px">
-      <h3 style="color:var(--accent)">Encoder-Based Autonomous Code</h3>
-      <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">Time-based auto (sleep(2000)) is unreliable — battery voltage affects speed. Encoder-based auto is consistent every run.</p>
+      <h3 style="color:var(--accent)">Encoder-Based Autonomous Code<\/h3>
+      <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">Time-based auto (sleep(2000)) is unreliable — battery voltage affects speed. Encoder-based auto is consistent every run.<\/p>
       ${codeHTML([
-        `<span class="comment">// Drive exactly 24 inches forward using encoders</span>`,
-        `<span class="kw">static final double</span> TICKS_PER_REV = <span class="num">537.7</span>;  <span class="comment">// GoBILDA 5203 312 RPM</span>`,
-        `<span class="kw">static final double</span> WHEEL_DIAMETER_MM = <span class="num">96</span>;`,
-        `<span class="kw">static final double</span> TICKS_PER_MM = TICKS_PER_REV /`,
+        `<span class="comment">// Drive exactly 24 inches forward using encoders<\/span>`,
+        `<span class="kw">static final double<\/span> TICKS_PER_REV = <span class="num">537.7<\/span>;  <span class="comment">// GoBILDA 5203 312 RPM<\/span>`,
+        `<span class="kw">static final double<\/span> WHEEL_DIAMETER_MM = <span class="num">96<\/span>;`,
+        `<span class="kw">static final double<\/span> TICKS_PER_MM = TICKS_PER_REV /`,
         `    (Math.PI * WHEEL_DIAMETER_MM);`,
         ``,
-        `<span class="kw">public void</span> <span class="fn">driveForward</span>(<span class="kw">double</span> distanceMM) {`,
-        `    <span class="kw">int</span> target = (<span class="kw">int</span>)(distanceMM * TICKS_PER_MM);`,
-        `    frontLeft.<span class="fn">setTargetPosition</span>(target);`,
-        `    <span class="comment">// ... set all 4 motors to same target</span>`,
-        `    frontLeft.<span class="fn">setMode</span>(RUN_TO_POSITION);`,
-        `    frontLeft.<span class="fn">setPower</span>(<span class="num">0.5</span>);`,
-        `    <span class="kw">while</span> (frontLeft.<span class="fn">isBusy</span>() && opModeIsActive()) {`,
-        `        <span class="comment">// wait for motor to reach target</span>`,
+        `<span class="kw">public void<\/span> <span class="fn">driveForward<\/span>(<span class="kw">double<\/span> distanceMM) {`,
+        `    <span class="kw">int<\/span> target = (<span class="kw">int<\/span>)(distanceMM * TICKS_PER_MM);`,
+        `    frontLeft.<span class="fn">setTargetPosition<\/span>(target);`,
+        `    <span class="comment">// ... set all 4 motors to same target<\/span>`,
+        `    frontLeft.<span class="fn">setMode<\/span>(RUN_TO_POSITION);`,
+        `    frontLeft.<span class="fn">setPower<\/span>(<span class="num">0.5<\/span>);`,
+        `    <span class="kw">while<\/span> (frontLeft.<span class="fn">isBusy<\/span>() && opModeIsActive()) {`,
+        `        <span class="comment">// wait for motor to reach target<\/span>`,
         `    }`,
-        `    frontLeft.<span class="fn">setPower</span>(<span class="num">0</span>); <span class="comment">// stop</span>`,
+        `    frontLeft.<span class="fn">setPower<\/span>(<span class="num">0<\/span>); <span class="comment">// stop<\/span>`,
         `}`
       ])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-auto','Hands-On','Autonomous Square Challenge','The challenge: program the robot to autonomously drive a perfect 12"×12" square without any driver input.',null,
@@ -1351,41 +1351,41 @@ function renderWeek4(){
           ['5️⃣','Assemble the square routine','driveForward(305.0); turnRight(90); × 4. Robot should end exactly where it started.'],
           ['6️⃣','Score: measure the gap','After 4 sides, measure how far from the start position. < 2 inches = excellent, < 4 inches = good, > 4 inches = needs tuning.'],
         ])}
-      </div>
+      <\/div>
       <div class="content-box" style="align-self:start">
-        <h3 style="color:#B39DDB">IMU Turn Code Pattern</h3>
+        <h3 style="color:#B39DDB">IMU Turn Code Pattern<\/h3>
         ${codeHTML([
-          `<span class="kw">public void</span> <span class="fn">turnRight</span>(<span class="kw">double</span> degrees) {`,
-          `  <span class="kw">double</span> startHeading = imu.<span class="fn">getRobotYawPitchRollAngles</span>()`,
-          `                           .<span class="fn">getYaw</span>(AngleUnit.DEGREES);`,
-          `  <span class="kw">double</span> target = startHeading - degrees;`,
+          `<span class="kw">public void<\/span> <span class="fn">turnRight<\/span>(<span class="kw">double<\/span> degrees) {`,
+          `  <span class="kw">double<\/span> startHeading = imu.<span class="fn">getRobotYawPitchRollAngles<\/span>()`,
+          `                           .<span class="fn">getYaw<\/span>(AngleUnit.DEGREES);`,
+          `  <span class="kw">double<\/span> target = startHeading - degrees;`,
           ``,
-          `  <span class="kw">while</span> (opModeIsActive()) {`,
-          `    <span class="kw">double</span> current = imu.<span class="fn">getRobotYawPitchRollAngles</span>()`,
-          `                            .<span class="fn">getYaw</span>(AngleUnit.DEGREES);`,
-          `    <span class="kw">double</span> error = current - target;`,
-          `    <span class="kw">if</span> (Math.abs(error) < <span class="num">2.0</span>) <span class="kw">break</span>;`,
-          `    <span class="comment">// Proportional turn</span>`,
-          `    <span class="kw">double</span> power = error * <span class="num">0.02</span>;`,
-          `    leftMotors.<span class="fn">setPower</span>(-power);`,
-          `    rightMotors.<span class="fn">setPower</span>(power);`,
+          `  <span class="kw">while<\/span> (opModeIsActive()) {`,
+          `    <span class="kw">double<\/span> current = imu.<span class="fn">getRobotYawPitchRollAngles<\/span>()`,
+          `                            .<span class="fn">getYaw<\/span>(AngleUnit.DEGREES);`,
+          `    <span class="kw">double<\/span> error = current - target;`,
+          `    <span class="kw">if<\/span> (Math.abs(error) < <span class="num">2.0<\/span>) <span class="kw">break<\/span>;`,
+          `    <span class="comment">// Proportional turn<\/span>`,
+          `    <span class="kw">double<\/span> power = error * <span class="num">0.02<\/span>;`,
+          `    leftMotors.<span class="fn">setPower<\/span>(-power);`,
+          `    rightMotors.<span class="fn">setPower<\/span>(power);`,
           `  }`,
           `  stopAll();`,
           `}`
         ])}
-        <div class="insight-box" style="margin-top:12px">The ×0.02 is a proportional gain. Too high = overshoots, too low = slow. You'll tune this value experimentally.</div>
-      </div>
-    </div>`
+        <div class="insight-box" style="margin-top:12px">The ×0.02 is a proportional gain. Too high = overshoots, too low = slow. You'll tune this value experimentally.<\/div>
+      <\/div>
+    <\/div>`
   ,true));
 
-  inject(sectionHTML('w-quiz','Knowledge Check','Mechanisms & Sensors Quiz',null,null,`<div id="quiz_w4"></div>`,false));
+  inject(sectionHTML('w-quiz','Knowledge Check','Mechanisms & Sensors Quiz',null,null,`<div id="quiz_w4"><\/div>`,false));
   inject(sectionHTML('w-resources','Home Study','Resources',null,null,
     `<div class="res-grid reveal">
-      <a class="res-card" href="https://gm0.org/docs/common-mechanisms" target="_blank"><div class="res-type">📖 Required</div><div class="res-title">GM0: Common Mechanisms</div><div class="res-desc">Detailed breakdowns of linear slides, arms, intakes, claws — with real FTC team designs.</div><span class="res-url">gm0.org/docs/common-mechanisms</span></a>
-      <a class="res-card" href="https://gm0.org/docs/sensors" target="_blank"><div class="res-type">📚 Required</div><div class="res-title">GM0: Sensors Guide</div><div class="res-desc">How to use every common FTC sensor including encoders, IMU, color, distance, and vision.</div><span class="res-url">gm0.org/docs/sensors</span></a>
-      <a class="res-card" href="https://easyopencv.com" target="_blank"><div class="res-type">🚀 Advanced</div><div class="res-title">EasyOpenCV Library</div><div class="res-desc">Add computer vision to your robot for detecting game elements and AprilTag localization.</div><span class="res-url">easyopencv.com</span></a>
-      <div class="res-card"><div class="res-type">✏️ Challenge</div><div class="res-title">Precision Drive Challenge</div><div class="res-desc">Program your robot to drive exactly 24 inches, stop, turn 90°, and drive 24 inches again. Measure the gap from where you started. Target: less than 1 inch error.</div></div>
-    </div>`
+      <a class="res-card" href="https://gm0.org/docs/common-mechanisms" target="_blank"><div class="res-type">📖 Required<\/div><div class="res-title">GM0: Common Mechanisms<\/div><div class="res-desc">Detailed breakdowns of linear slides, arms, intakes, claws — with real FTC team designs.<\/div><span class="res-url">gm0.org/docs/common-mechanisms<\/span><\/a>
+      <a class="res-card" href="https://gm0.org/docs/sensors" target="_blank"><div class="res-type">📚 Required<\/div><div class="res-title">GM0: Sensors Guide<\/div><div class="res-desc">How to use every common FTC sensor including encoders, IMU, color, distance, and vision.<\/div><span class="res-url">gm0.org/docs/sensors<\/span><\/a>
+      <a class="res-card" href="https://easyopencv.com" target="_blank"><div class="res-type">🚀 Advanced<\/div><div class="res-title">EasyOpenCV Library<\/div><div class="res-desc">Add computer vision to your robot for detecting game elements and AprilTag localization.<\/div><span class="res-url">easyopencv.com<\/span><\/a>
+      <div class="res-card"><div class="res-type">✏️ Challenge<\/div><div class="res-title">Precision Drive Challenge<\/div><div class="res-desc">Program your robot to drive exactly 24 inches, stop, turn 90°, and drive 24 inches again. Measure the gap from where you started. Target: less than 1 inch error.<\/div><\/div>
+    <\/div>`
   ,true));
 
   setTimeout(()=>initQuiz('quiz_w4',[
@@ -1407,7 +1407,7 @@ function renderWeek5(){
       ${cardHTML('green','✅','Integration Focus',['All 6 subsystems assembled and wired','TeleOp: drive + mechanism control working','Autonomous: drive square + basic score attempt','Cable management: no loose wires'])}
       ${cardHTML('amber','⭐','Showcase Day',['Present robot to parents or school community','Each student explains one subsystem they built','Live demo: obstacle course + autonomous run','Robot used for outreach events all year'])}
       ${cardHTML('blue','🚀','Phase 2 Preview',['September: FTC game kickoff — real challenge revealed','Design full-size robot in Onshape','Compete in League Meets starting November','Path to Regionals, States, and Worlds'])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-checklist','Integration','The 6-Subsystem Checklist','Every item must be checked off before Showcase Day. This is your robot\'s minimum viable product.',null,
@@ -1419,24 +1419,24 @@ function renderWeek5(){
       ['🦾','Mechanism — At least one scoring mechanism operational','Claw, intake, or arm controlled by gamepad. Limit switches or servo positions calibrated.'],
       ['📡','Sensors — At least encoders and IMU in use','Encoder-based drive tested. IMU turn tested. Values display correctly in telemetry.'],
     ])}
-    <div class="insight-box reveal" style="margin-top:20px">A robot that does fewer things reliably beats one that does many things inconsistently. Focus on quality over feature count.</div>`
+    <div class="insight-box reveal" style="margin-top:20px">A robot that does fewer things reliably beats one that does many things inconsistently. Focus on quality over feature count.<\/div>`
   ,true));
 
   inject(sectionHTML('w-showcase','Showcase Day','Mini-Bot Showcase','Demo Day is a real event. Treat it like a competition — reliability under pressure is what you\'re training for.',null,
     `<div class="two-col reveal">
       <div class="content-box">
-        <h3 style="color:#81C784">📋 Demo Day Agenda</h3>
+        <h3 style="color:#81C784">📋 Demo Day Agenda<\/h3>
         <div class="timeline">
           ${buildStep(1,'#2E7D32','10 min','Team Introduction','Each team member states their name and the subsystem they owned this phase. No slides needed — just know it cold.',[])}
           ${buildStep(2,'#00897B','5 min','Robot Walkthrough','Walk the audience around the robot. Point to each subsystem and explain what it does in one sentence.',[])}
           ${buildStep(3,'#1565C0','10 min','Live Drive Demo','Drive through the obstacle course without hitting anything. Operate the mechanism at least 3 times successfully.',[])}
           ${buildStep(4,'#4527A0','5 min','Autonomous Demo','Run your autonomous program from the start position. Show it drives predictably without driver input.',[])}
           ${buildStep(5,'#F57F17','10 min','Q&A','Audience asks questions. Every team member should be able to answer about their subsystem.',[])}
-        </div>
-      </div>
+        <\/div>
+      <\/div>
       <div style="display:flex;flex-direction:column;gap:16px">
         <div class="content-box">
-          <h3 style="color:#81C784">Scoring Rubric (100 pts)</h3>
+          <h3 style="color:#81C784">Scoring Rubric (100 pts)<\/h3>
           ${compTableHTML(['Criterion','Points'],
             [['All 6 subsystems present and working','20'],
              ['TeleOp control: drive + mechanism','20'],
@@ -1444,26 +1444,26 @@ function renderWeek5(){
              ['Clean wiring and cable management','15'],
              ['Verbal explanation by all members','15'],
              ['Q&A responses accurate','10']])}
-        </div>
+        <\/div>
         <div class="content-box">
-          <h3 style="color:var(--amber)">🚀 What\'s Next: Phase 2</h3>
-          <div class="info-row"><span class="info-emoji">📅</span><p><strong>September 2026</strong> — FTC game kickoff. New challenge announced. Season officially begins.</p></div>
-          <div class="info-row"><span class="info-emoji">📐</span><p><strong>CAD in Onshape</strong> — Design your full-size competition robot before touching metal.</p></div>
-          <div class="info-row"><span class="info-emoji">🏆</span><p><strong>League Meets in November</strong> — Your first real competition. Everything you built this phase pays off.</p></div>
-        </div>
-      </div>
-    </div>`
+          <h3 style="color:var(--amber)">🚀 What\'s Next: Phase 2<\/h3>
+          <div class="info-row"><span class="info-emoji">📅<\/span><p><strong>September 2026<\/strong> — FTC game kickoff. New challenge announced. Season officially begins.<\/p><\/div>
+          <div class="info-row"><span class="info-emoji">📐<\/span><p><strong>CAD in Onshape<\/strong> — Design your full-size competition robot before touching metal.<\/p><\/div>
+          <div class="info-row"><span class="info-emoji">🏆<\/span><p><strong>League Meets in November<\/strong> — Your first real competition. Everything you built this phase pays off.<\/p><\/div>
+        <\/div>
+      <\/div>
+    <\/div>`
   ,false));
 
-  inject(sectionHTML('w-quiz','Phase 1 Final Quiz','Integration Quiz','10 questions covering all of Phase 1. Need 8/10 to certify Phase 1 complete.',null,`<div id="quiz_w5"></div>`,true));
+  inject(sectionHTML('w-quiz','Phase 1 Final Quiz','Integration Quiz','10 questions covering all of Phase 1. Need 8/10 to certify Phase 1 complete.',null,`<div id="quiz_w5"><\/div>`,true));
 
   inject(sectionHTML('w-resources','Phase 1 Complete','Looking Ahead to Phase 2',null,null,
     `<div class="res-grid reveal">
-      <a class="res-card" href="https://www.onshape.com" target="_blank"><div class="res-type">📐 Phase 2 Prep</div><div class="res-title">Onshape CAD</div><div class="res-desc">Free for FTC teams. Create an account now and complete the beginner tutorials before kickoff.</div><span class="res-url">onshape.com</span></a>
-      <a class="res-card" href="https://firstinspires.org/robotics/ftc" target="_blank"><div class="res-type">🏆 Phase 2 Prep</div><div class="res-title">FTC Game Manuals</div><div class="res-desc">Game Manual Part 1 (rules) and Part 2 (robot construction rules). Read Part 2 now — robot specs don\'t change between seasons.</div><span class="res-url">firstinspires.org/ftc</span></a>
-      <a class="res-card" href="https://gm0.org" target="_blank"><div class="res-type">📖 Continue</div><div class="res-title">GM0: Full Guide</div><div class="res-desc">Everything you haven\'t read yet: CAD, advanced programming, competition strategy, and team management.</div><span class="res-url">gm0.org</span></a>
-      <div class="res-card"><div class="res-type">🎉 Phase 1 Complete</div><div class="res-title">Congratulations</div><div class="res-desc">You\'ve built a working robot from scratch in 10 weeks. You understand every subsystem. You\'re ready for the real season. Now go compete.</div></div>
-    </div>`
+      <a class="res-card" href="https://www.onshape.com" target="_blank"><div class="res-type">📐 Phase 2 Prep<\/div><div class="res-title">Onshape CAD<\/div><div class="res-desc">Free for FTC teams. Create an account now and complete the beginner tutorials before kickoff.<\/div><span class="res-url">onshape.com<\/span><\/a>
+      <a class="res-card" href="https://firstinspires.org/robotics/ftc" target="_blank"><div class="res-type">🏆 Phase 2 Prep<\/div><div class="res-title">FTC Game Manuals<\/div><div class="res-desc">Game Manual Part 1 (rules) and Part 2 (robot construction rules). Read Part 2 now — robot specs don\'t change between seasons.<\/div><span class="res-url">firstinspires.org/ftc<\/span><\/a>
+      <a class="res-card" href="https://gm0.org" target="_blank"><div class="res-type">📖 Continue<\/div><div class="res-title">GM0: Full Guide<\/div><div class="res-desc">Everything you haven\'t read yet: CAD, advanced programming, competition strategy, and team management.<\/div><span class="res-url">gm0.org<\/span><\/a>
+      <div class="res-card"><div class="res-type">🎉 Phase 1 Complete<\/div><div class="res-title">Congratulations<\/div><div class="res-desc">You\'ve built a working robot from scratch in 10 weeks. You understand every subsystem. You\'re ready for the real season. Now go compete.<\/div><\/div>
+    <\/div>`
   ,false));
 
   setTimeout(()=>initQuiz('quiz_w5',[
@@ -1490,45 +1490,45 @@ function renderWeek6(){
       ${cardHTML('orange','🎮','Game Analysis',['Read Game Manual 1 cover to cover','Identify all scoring actions and point values','Map the field layout and game element locations','Calculate theoretical max score'])}
       ${cardHTML('blue','♟','Strategy First',['Choose your team\'s primary role: scorer, defender, or hybrid','Identify which autonomous actions are highest value','Plan alliance partner compatibility','Prioritize mechanism order for build season'])}
       ${cardHTML('teal','📋','Deliverables',['Point value spreadsheet for all game actions','Top 3 robot concept sketches','Ranked list of autonomous routines by point value','Decision: Mecanum or Tank drive for this game?'])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-gameanalysis','Season Strategy','Game Analysis Framework','Use this framework every year — it works regardless of the specific game.',null,
     `<div class="two-col reveal">
       <div class="content-box">
-        <h3 style="color:#FFAB76">📊 Score Every Action</h3>
-        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">Build a spreadsheet. For every scoring action in the game manual, calculate: points per action × realistic cycles per match = points per match.</p>
-        <div class="info-row"><span class="info-emoji">📍</span><p><strong>Autonomous bonuses</strong> — typically 2–5× higher point value than TeleOp. Always prioritize autonomous.</p></div>
-        <div class="info-row"><span class="info-emoji">🔄</span><p><strong>Cycle time analysis</strong> — a 5-point action done 8× beats a 15-point action done 2×. Always calculate cycles per match.</p></div>
-        <div class="info-row"><span class="info-emoji">🤝</span><p><strong>Cooperative actions</strong> — many FTC games have alliance-based end-game bonuses. Understand what your alliance partner needs.</p></div>
-        <div class="info-row"><span class="info-emoji">🎲</span><p><strong>Randomization</strong> — FTC games randomize element placement. Your autonomous must handle at least 2 of 3 positions to be competitive.</p></div>
-      </div>
+        <h3 style="color:#FFAB76">📊 Score Every Action<\/h3>
+        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">Build a spreadsheet. For every scoring action in the game manual, calculate: points per action × realistic cycles per match = points per match.<\/p>
+        <div class="info-row"><span class="info-emoji">📍<\/span><p><strong>Autonomous bonuses<\/strong> — typically 2–5× higher point value than TeleOp. Always prioritize autonomous.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">🔄<\/span><p><strong>Cycle time analysis<\/strong> — a 5-point action done 8× beats a 15-point action done 2×. Always calculate cycles per match.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">🤝<\/span><p><strong>Cooperative actions<\/strong> — many FTC games have alliance-based end-game bonuses. Understand what your alliance partner needs.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">🎲<\/span><p><strong>Randomization<\/strong> — FTC games randomize element placement. Your autonomous must handle at least 2 of 3 positions to be competitive.<\/p><\/div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:#FFAB76">♟ Robot Roles in FTC</h3>
+        <h3 style="color:#FFAB76">♟ Robot Roles in FTC<\/h3>
         ${compTableHTML(['Role','What You Do','When to Choose'],
           [['Pure Scorer','Maximize your own scoring — fast cycles, high auto','Strong build team, reliable codebase'],
            ['Endgame Specialist','Focus on high-value end-game (climbing, parking)','When end-game is extremely high-point'],
            ['Alliance Support','Score + do tasks your alliance partner can\'t','When partner has a gap in capability'],
            ['Defender','Block opponent cycles — controversial but legal','Only when scoring is very difficult'],
            ['Hybrid','Balance scoring + end-game','Most competitive FTC robots']])}
-        <div class="insight-box" style="margin-top:12px">Best advice: choose the role that lets YOUR team be consistent. An unreliable high-scorer is worse than a reliable medium-scorer.</div>
-      </div>
-    </div>`
+        <div class="insight-box" style="margin-top:12px">Best advice: choose the role that lets YOUR team be consistent. An unreliable high-scorer is worse than a reliable medium-scorer.<\/div>
+      <\/div>
+    <\/div>`
   ,true));
 
   inject(sectionHTML('w-strategy','Season Planning','Build Season Roadmap','Map backwards from your first League Meet to today. Build what you need — nothing more.',null,
     `<div class="content-box reveal" style="margin-bottom:24px">
-      <h3 style="color:var(--accent)">Backwards Planning Template</h3>
+      <h3 style="color:var(--accent)">Backwards Planning Template<\/h3>
       ${compTableHTML(['Milestone','Target Date','What Must Be Done'],
         [['League Meet 1','November (Week ~8 of season)','Working drivetrain + 1 scoring mechanism + auto parking'],
           ['League Meet 2','December (Week ~12)','Reliable cycles + improved autonomous + end-game attempt'],
           ['Regionals / States','January–February','Optimized robot + consistent autonomous + all scoring modes'],
           ['Worlds (if qualified)','March–April','Robot nearly perfect + advanced autonomous paths + driver mastery'],
           ['Design Freeze','3 weeks before first meet','Stop adding features — focus on reliability and driver practice']])}
-    </div>
+    <\/div>
     <div class="two-col reveal">
       <div class="content-box">
-        <h3 style="color:var(--accent)">Mechanism Priority Order</h3>
+        <h3 style="color:var(--accent)">Mechanism Priority Order<\/h3>
         ${checklistHTML([
           ['1️⃣','Drivetrain','Always first. Everything else depends on mobility.'],
           ['2️⃣','Autonomous Parking','Easiest auto points — just drive to the zone.'],
@@ -1537,25 +1537,25 @@ function renderWeek6(){
           ['5️⃣','Secondary Scoring','Second scoring action once primary is reliable.'],
           ['6️⃣','End-Game','Climbing, balancing — high points but build complexity last.'],
         ])}
-      </div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:var(--accent)">FTC Competition Format</h3>
-        <div class="info-row"><span class="info-emoji">🤝</span><p><strong>Alliance Selection</strong> — Top 4 ranked teams pick partners. Rankings are based on your record across all qualification matches.</p></div>
-        <div class="info-row"><span class="info-emoji">⏱</span><p><strong>Match Length</strong> — 30 sec Autonomous + 2 min TeleOp = 2:30 total per match.</p></div>
-        <div class="info-row"><span class="info-emoji">📊</span><p><strong>OPR / Ranking</strong> — Ranking Points (RP) determine seeding. Winning earns 2 RP; ties earn 1 RP.</p></div>
-        <div class="info-row"><span class="info-emoji">🏅</span><p><strong>Awards</strong> — Think Award, Control Award, Design Award, Inspire Award. Engineering notebook is required for most.</p></div>
-      </div>
-    </div>`
+        <h3 style="color:var(--accent)">FTC Competition Format<\/h3>
+        <div class="info-row"><span class="info-emoji">🤝<\/span><p><strong>Alliance Selection<\/strong> — Top 4 ranked teams pick partners. Rankings are based on your record across all qualification matches.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">⏱<\/span><p><strong>Match Length<\/strong> — 30 sec Autonomous + 2 min TeleOp = 2:30 total per match.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">📊<\/span><p><strong>OPR / Ranking<\/strong> — Ranking Points (RP) determine seeding. Winning earns 2 RP; ties earn 1 RP.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">🏅<\/span><p><strong>Awards<\/strong> — Think Award, Control Award, Design Award, Inspire Award. Engineering notebook is required for most.<\/p><\/div>
+      <\/div>
+    <\/div>`
   ,false));
 
-  inject(sectionHTML('w-quiz','Knowledge Check','Strategy Quiz',null,null,`<div id="quiz_w6"></div>`,true));
+  inject(sectionHTML('w-quiz','Knowledge Check','Strategy Quiz',null,null,`<div id="quiz_w6"><\/div>`,true));
   inject(sectionHTML('w-resources','Resources','Season Kickoff Resources',null,null,
     `<div class="res-grid reveal">
-      <a class="res-card" href="https://firstinspires.org/robotics/ftc" target="_blank"><div class="res-type">📋 Required</div><div class="res-title">Official FTC Game Materials</div><div class="res-desc">Game Manual 1 + 2, field setup guide, and scoring software. All released at kickoff in September.</div><span class="res-url">firstinspires.org/ftc</span></a>
-      <a class="res-card" href="https://gm0.org/docs/game-analysis" target="_blank"><div class="res-type">📖 Strategy</div><div class="res-title">GM0: Game Analysis Guide</div><div class="res-desc">Framework for analyzing any FTC game — scoring calculations, strategy selection, and mechanism prioritization.</div><span class="res-url">gm0.org</span></a>
-      <a class="res-card" href="https://www.youtube.com/c/FirstTechChallenge" target="_blank"><div class="res-type">📺 Watch</div><div class="res-title">FTC Official YouTube</div><div class="res-desc">Watch the game kickoff stream live in September. Rewatch to catch rules details you missed.</div><span class="res-url">youtube.com/c/FirstTechChallenge</span></a>
-      <div class="res-card"><div class="res-type">✏️ Deliverable</div><div class="res-title">Game Analysis Spreadsheet</div><div class="res-desc">Create a spreadsheet with columns: Action, Points, Cycles/Match, Points/Match, Difficulty. Rank all actions by Points/Match ÷ Difficulty.</div></div>
-    </div>`
+      <a class="res-card" href="https://firstinspires.org/robotics/ftc" target="_blank"><div class="res-type">📋 Required<\/div><div class="res-title">Official FTC Game Materials<\/div><div class="res-desc">Game Manual 1 + 2, field setup guide, and scoring software. All released at kickoff in September.<\/div><span class="res-url">firstinspires.org/ftc<\/span><\/a>
+      <a class="res-card" href="https://gm0.org/docs/game-analysis" target="_blank"><div class="res-type">📖 Strategy<\/div><div class="res-title">GM0: Game Analysis Guide<\/div><div class="res-desc">Framework for analyzing any FTC game — scoring calculations, strategy selection, and mechanism prioritization.<\/div><span class="res-url">gm0.org<\/span><\/a>
+      <a class="res-card" href="https://www.youtube.com/c/FirstTechChallenge" target="_blank"><div class="res-type">📺 Watch<\/div><div class="res-title">FTC Official YouTube<\/div><div class="res-desc">Watch the game kickoff stream live in September. Rewatch to catch rules details you missed.<\/div><span class="res-url">youtube.com/c/FirstTechChallenge<\/span><\/a>
+      <div class="res-card"><div class="res-type">✏️ Deliverable<\/div><div class="res-title">Game Analysis Spreadsheet<\/div><div class="res-desc">Create a spreadsheet with columns: Action, Points, Cycles/Match, Points/Match, Difficulty. Rank all actions by Points/Match ÷ Difficulty.<\/div><\/div>
+    <\/div>`
   ,false));
 
   setTimeout(()=>initQuiz('quiz_w6',[
@@ -1577,13 +1577,13 @@ function renderWeek7(){
       ${cardHTML('purple','📐','Why CAD First',['Catch interference issues before they happen on the robot','Generate accurate parts lists and cut lengths','Share designs with teammates remotely','Iterate 10× faster digitally than physically'])}
       ${cardHTML('blue','🔨','Prototyping Philosophy',['Prototype rough with cardboard, wood, or 3D prints','Test the concept — not the final design','Fail fast: 3 bad prototypes → 1 great robot','Never prototype with final aluminum unless you have extra'])}
       ${cardHTML('orange','🖨️','3D Printing in FTC',['Legal for all non-structural parts','Use PETG or PLA for brackets, camera mounts, cable guides','TPU for grip wheels and intake rollers','Print tolerances: +0.3–0.5mm for friction fits'])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-cad','Design Tools','Onshape for FTC','Onshape is free for FTC teams, runs in your browser, and has built-in FTC part libraries.',null,
     `<div class="two-col reveal">
       <div class="content-box">
-        <h3 style="color:#B39DDB">🚀 Getting Started in Onshape</h3>
+        <h3 style="color:#B39DDB">🚀 Getting Started in Onshape<\/h3>
         ${checklistHTML([
           ['1️⃣','Create free EDU account','Go to onshape.com → Education → Free plan for students'],
           ['2️⃣','Install FTC Part Studio','Search "FTC" in Feature Studio marketplace. Install GoBILDA and REV libraries.'],
@@ -1592,9 +1592,9 @@ function renderWeek7(){
           ['5️⃣','Design mechanisms','Sketch → Extrude → Constrain. Use Assembly to connect parts with mates.'],
           ['6️⃣','Check for interference','Onshape will highlight collisions in red. Fix before ordering parts.'],
         ])}
-      </div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:#B39DDB">Key Onshape Concepts</h3>
+        <h3 style="color:#B39DDB">Key Onshape Concepts<\/h3>
         ${compTableHTML(['Concept','What It Does'],
           [['Part Studio','Where you create individual parts using sketches and features'],
            ['Assembly','Where you put parts together and define how they move relative to each other'],
@@ -1602,8 +1602,8 @@ function renderWeek7(){
            ['Feature Script','Onshape\'s scripting language — used to build the FTC part libraries'],
            ['Version control','Every change is saved automatically with history — you can revert anything'],
            ['Branching','Like Git — make experimental changes on a branch without breaking main design']])}
-      </div>
-    </div>`
+      <\/div>
+    <\/div>`
   ,true));
 
   inject(sectionHTML('w-proto','Prototyping','Build Fast, Learn Fast','Your first prototype will be wrong. That\'s the point. Build it to learn — not to compete.',null,
@@ -1617,9 +1617,9 @@ function renderWeek7(){
           ['🔁','Iterate quickly','If a prototype fails, ask: what did I learn? Then make the next version better.'],
           ['⏱','Time-box prototyping','Give each prototype attempt 30 minutes max. If it\'s not working, pivot the concept.'],
         ])}
-      </div>
+      <\/div>
       <div class="content-box" style="align-self:start">
-        <h3 style="color:#B39DDB">Prototype vs. Competition Part</h3>
+        <h3 style="color:#B39DDB">Prototype vs. Competition Part<\/h3>
         ${compTableHTML(['Aspect','Prototype','Competition Part'],
           [['Material','Cardboard, wood, PLA','Aluminum, PETG, steel hardware'],
            ['Time to make','15–30 minutes','2–8 hours'],
@@ -1627,19 +1627,19 @@ function renderWeek7(){
            ['Cost','Near zero','$5–50+'],
            ['Scrap if wrong','Yes — immediately','Very painful'],
            ['Goal','Learn something','Build something that competes']])}
-        <div class="insight-box" style="margin-top:12px">Design rule: never cut aluminum until your prototype has run for 30 cycles without a mechanical failure.</div>
-      </div>
-    </div>`
+        <div class="insight-box" style="margin-top:12px">Design rule: never cut aluminum until your prototype has run for 30 cycles without a mechanical failure.<\/div>
+      <\/div>
+    <\/div>`
   ,false));
 
-  inject(sectionHTML('w-quiz','Knowledge Check','CAD & Design Quiz',null,null,`<div id="quiz_w7"></div>`,true));
+  inject(sectionHTML('w-quiz','Knowledge Check','CAD & Design Quiz',null,null,`<div id="quiz_w7"><\/div>`,true));
   inject(sectionHTML('w-resources','Resources','CAD & Design Resources',null,null,
     `<div class="res-grid reveal">
-      <a class="res-card" href="https://www.onshape.com" target="_blank"><div class="res-type">📐 Primary Tool</div><div class="res-title">Onshape (Free for FTC)</div><div class="res-desc">Cloud-based CAD. Create your edu account, then find the FTC Part Libraries in the marketplace.</div><span class="res-url">onshape.com</span></a>
-      <a class="res-card" href="https://gm0.org/docs/cad-resources" target="_blank"><div class="res-type">📖 Required</div><div class="res-title">GM0: CAD Resources</div><div class="res-desc">FTC-specific Onshape tutorials, part library links, and recommended design practices from top teams.</div><span class="res-url">gm0.org/docs/cad-resources</span></a>
-      <a class="res-card" href="https://www.youtube.com/c/GoBILDA" target="_blank"><div class="res-type">📺 Watch</div><div class="res-title">GoBILDA YouTube</div><div class="res-desc">Official GoBILDA channel with mechanism tutorials, part spotlights, and FTC build guides using their system.</div><span class="res-url">youtube.com/c/GoBILDA</span></a>
-      <div class="res-card"><div class="res-type">✏️ Deliverable</div><div class="res-title">Full Robot CAD Model</div><div class="res-desc">Complete Onshape model with: chassis, drivetrain, primary mechanism, and sensor mounts. Share the link with your coach before ordering any parts.</div></div>
-    </div>`
+      <a class="res-card" href="https://www.onshape.com" target="_blank"><div class="res-type">📐 Primary Tool<\/div><div class="res-title">Onshape (Free for FTC)<\/div><div class="res-desc">Cloud-based CAD. Create your edu account, then find the FTC Part Libraries in the marketplace.<\/div><span class="res-url">onshape.com<\/span><\/a>
+      <a class="res-card" href="https://gm0.org/docs/cad-resources" target="_blank"><div class="res-type">📖 Required<\/div><div class="res-title">GM0: CAD Resources<\/div><div class="res-desc">FTC-specific Onshape tutorials, part library links, and recommended design practices from top teams.<\/div><span class="res-url">gm0.org/docs/cad-resources<\/span><\/a>
+      <a class="res-card" href="https://www.youtube.com/c/GoBILDA" target="_blank"><div class="res-type">📺 Watch<\/div><div class="res-title">GoBILDA YouTube<\/div><div class="res-desc">Official GoBILDA channel with mechanism tutorials, part spotlights, and FTC build guides using their system.<\/div><span class="res-url">youtube.com/c/GoBILDA<\/span><\/a>
+      <div class="res-card"><div class="res-type">✏️ Deliverable<\/div><div class="res-title">Full Robot CAD Model<\/div><div class="res-desc">Complete Onshape model with: chassis, drivetrain, primary mechanism, and sensor mounts. Share the link with your coach before ordering any parts.<\/div><\/div>
+    <\/div>`
   ,false));
 
   setTimeout(()=>initQuiz('quiz_w7',[
@@ -1661,7 +1661,7 @@ function renderWeek8(){
       ${cardHTML('teal','📋','Build Rules (Part 2)',['Max weight: 42 lbs (19kg) excluding battery','Starting size: fits in 18"×18" volume','4 motor limit + 12 servo limit per robot','All electronics must be REV or compatible FIRST-approved'])}
       ${cardHTML('blue','⚡','Wiring Standards',['All wire connections must be secure (no exposed wire)','Motor controller to motor: 22–16 AWG','Battery leads: 12 AWG minimum','Label every wire at both ends'])}
       ${cardHTML('orange','🤖','Autonomous Priority',['Autonomous = 30 seconds of "free" points','Reliable auto parking > unreliable complex auto','AprilTag detection for field localization','Test from both alliance starting positions'])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-rules','Build Standards','Robot Build Rules & Inspection','Know the rules before you build. Disqualification at inspection is heartbreaking and avoidable.',null,
@@ -1675,9 +1675,9 @@ function renderWeek8(){
            ['Battery','One 12V 3000mAh or higher LiPo','REV Slim Battery is the standard choice'],
            ['Pneumatics','Allowed with specific rules','Complex — check Game Manual Part 2 for current season rules'],
            ['3D Prints','Legal for non-structural use','Cannot be primary structural members or drive wheels']])}
-      </div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:#4DB6AC">Pre-Inspection Checklist</h3>
+        <h3 style="color:#4DB6AC">Pre-Inspection Checklist<\/h3>
         ${checklistHTML([
           ['⚖️','Weight check with scale','Weigh with all competition components. Under 42 lbs with buffer.'],
           ['📏','Starting size passes cube test','Robot in starting position fits fully within 18" cube.'],
@@ -1686,53 +1686,53 @@ function renderWeek8(){
           ['🔴','Main power switch accessible','Refs must be able to hit it to E-stop the robot.'],
           ['🏷️','Robot labeled with team number','Visible from all sides per FTC requirements.'],
         ])}
-        <div class="insight-box" style="margin-top:12px">Self-inspect your robot the week before your first meet using the official Robot Inspection Checklist from Game Manual Part 1.</div>
-      </div>
-    </div>`
+        <div class="insight-box" style="margin-top:12px">Self-inspect your robot the week before your first meet using the official Robot Inspection Checklist from Game Manual Part 1.<\/div>
+      <\/div>
+    <\/div>`
   ,true));
 
   inject(sectionHTML('w-autonomous','Autonomous Strategy','Building Reliable Autonomous','Autonomous points are the highest-value actions in FTC. A reliable 30-point auto is worth more than an inconsistent 60-point auto.',null,
     `<div class="two-col reveal">
       <div class="content-box">
-        <h3 style="color:#4DB6AC">Autonomous Progression</h3>
+        <h3 style="color:#4DB6AC">Autonomous Progression<\/h3>
         <div class="timeline">
           ${buildStep(1,'#E65100','Week 1','Auto Parking','Just drive to the parking zone. 3–5 points. Takes 30 minutes to code. Always include this.',[])}
           ${buildStep(2,'#1565C0','Week 2','Score Pre-loaded Element','Score the element placed on your robot before the match. Consistent path to high-value position.',[])}
           ${buildStep(3,'#4527A0','Week 3','AprilTag Localization','Use webcam to detect AprilTags. Precise field position = reliable scoring from any start position.',[])}
           ${buildStep(4,'#00897B','Week 4','Multi-Element Auto','Collect and score 2+ game elements autonomously. Requires precise motion planning (Road Runner).',[])}
           ${buildStep(5,'#2E7D32','Advanced','Path Following (Road Runner)','Smooth, curved paths using motion profiling. Maximum speed and accuracy. Required at top-level competition.',[])}
-        </div>
-      </div>
+        <\/div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:#4DB6AC">Road Runner Motion Planning</h3>
-        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">Road Runner generates mathematically optimal paths for Mecanum drivetrains. It handles acceleration, deceleration, and curves automatically.</p>
+        <h3 style="color:#4DB6AC">Road Runner Motion Planning<\/h3>
+        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">Road Runner generates mathematically optimal paths for Mecanum drivetrains. It handles acceleration, deceleration, and curves automatically.<\/p>
         ${codeHTML([
-          `<span class="comment">// Road Runner path example</span>`,
+          `<span class="comment">// Road Runner path example<\/span>`,
           `Actions.runBlocking(`,
-          `  drive.<span class="fn">actionBuilder</span>(startPose)`,
-          `    <span class="comment">// Strafe to scoring position</span>`,
-          `    .<span class="fn">strafeTo</span>(<span class="kw">new</span> <span class="cls">Vector2d</span>(<span class="num">24</span>, <span class="num">-12</span>))`,
-          `    <span class="comment">// Score the element</span>`,
-          `    .<span class="fn">stopAndAdd</span>(scoreElement)`,
-          `    <span class="comment">// Drive to pickup position</span>`,
-          `    .<span class="fn">splineTo</span>(<span class="kw">new</span> <span class="cls">Vector2d</span>(<span class="num">48</span>, <span class="num">0</span>),`,
-          `             Math.toRadians(<span class="num">90</span>))`,
-          `    .<span class="fn">build</span>()`,
+          `  drive.<span class="fn">actionBuilder<\/span>(startPose)`,
+          `    <span class="comment">// Strafe to scoring position<\/span>`,
+          `    .<span class="fn">strafeTo<\/span>(<span class="kw">new<\/span> <span class="cls">Vector2d<\/span>(<span class="num">24<\/span>, <span class="num">-12<\/span>))`,
+          `    <span class="comment">// Score the element<\/span>`,
+          `    .<span class="fn">stopAndAdd<\/span>(scoreElement)`,
+          `    <span class="comment">// Drive to pickup position<\/span>`,
+          `    .<span class="fn">splineTo<\/span>(<span class="kw">new<\/span> <span class="cls">Vector2d<\/span>(<span class="num">48<\/span>, <span class="num">0<\/span>),`,
+          `             Math.toRadians(<span class="num">90<\/span>))`,
+          `    .<span class="fn">build<\/span>()`,
           `);`
         ])}
-        <a href="https://www.learnroadrunner.com" target="_blank" class="res-url" style="display:block;margin-top:12px">learnroadrunner.com</a>
-      </div>
-    </div>`
+        <a href="https://www.learnroadrunner.com" target="_blank" class="res-url" style="display:block;margin-top:12px">learnroadrunner.com<\/a>
+      <\/div>
+    <\/div>`
   ,false));
 
-  inject(sectionHTML('w-quiz','Knowledge Check','Competition Build Quiz',null,null,`<div id="quiz_w8"></div>`,true));
+  inject(sectionHTML('w-quiz','Knowledge Check','Competition Build Quiz',null,null,`<div id="quiz_w8"><\/div>`,true));
   inject(sectionHTML('w-resources','Resources','Build Season Resources',null,null,
     `<div class="res-grid reveal">
-      <a class="res-card" href="https://www.learnroadrunner.com" target="_blank"><div class="res-type">🤖 Essential</div><div class="res-title">Learn Road Runner</div><div class="res-desc">The definitive guide to Road Runner motion planning for FTC Mecanum drivetrains.</div><span class="res-url">learnroadrunner.com</span></a>
-      <a class="res-card" href="https://firstinspires.org/robotics/ftc" target="_blank"><div class="res-type">📋 Required</div><div class="res-title">Game Manual Part 2</div><div class="res-desc">Robot construction rules: weight, size, motor limits, legal electronics. Read this before building.</div><span class="res-url">firstinspires.org/ftc</span></a>
-      <a class="res-card" href="https://gm0.org/docs/software" target="_blank"><div class="res-type">💻 Programming</div><div class="res-title">GM0: Software Guide</div><div class="res-desc">PID control, Feedforward, odometry, vision, and motion planning — all explained for FTC.</div><span class="res-url">gm0.org/docs/software</span></a>
-      <div class="res-card"><div class="res-type">✅ Deliverable</div><div class="res-title">Robot Inspection Self-Check</div><div class="res-desc">Download the official Robot Inspection Checklist. Complete it on your robot one week before your first League Meet. Fix anything that fails.</div></div>
-    </div>`
+      <a class="res-card" href="https://www.learnroadrunner.com" target="_blank"><div class="res-type">🤖 Essential<\/div><div class="res-title">Learn Road Runner<\/div><div class="res-desc">The definitive guide to Road Runner motion planning for FTC Mecanum drivetrains.<\/div><span class="res-url">learnroadrunner.com<\/span><\/a>
+      <a class="res-card" href="https://firstinspires.org/robotics/ftc" target="_blank"><div class="res-type">📋 Required<\/div><div class="res-title">Game Manual Part 2<\/div><div class="res-desc">Robot construction rules: weight, size, motor limits, legal electronics. Read this before building.<\/div><span class="res-url">firstinspires.org/ftc<\/span><\/a>
+      <a class="res-card" href="https://gm0.org/docs/software" target="_blank"><div class="res-type">💻 Programming<\/div><div class="res-title">GM0: Software Guide<\/div><div class="res-desc">PID control, Feedforward, odometry, vision, and motion planning — all explained for FTC.<\/div><span class="res-url">gm0.org/docs/software<\/span><\/a>
+      <div class="res-card"><div class="res-type">✅ Deliverable<\/div><div class="res-title">Robot Inspection Self-Check<\/div><div class="res-desc">Download the official Robot Inspection Checklist. Complete it on your robot one week before your first League Meet. Fix anything that fails.<\/div><\/div>
+    <\/div>`
   ,false));
 
   setTimeout(()=>initQuiz('quiz_w8',[
@@ -1754,34 +1754,34 @@ function renderWeek9(){
       ${cardHTML('blue','⚙️','PID Tuning',['Proportional: how hard to correct error','Integral: fix steady-state error over time','Derivative: reduce overshoot','FTC tools: FTCDashboard for live tuning'])}
       ${cardHTML('teal','🎮','Driver Practice',['30+ minutes per driver per session','Simulate full match conditions: timer, game elements','Record cycles per match — track improvement','Practice E-stop recovery and robot resetting'])}
       ${cardHTML('orange','📊','Data Collection',['Log autonomous scores across 20 runs','Track TeleOp cycle times per driver','Identify the 3 biggest sources of failure','Prioritize fixes by: frequency × points lost'])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-pid','Advanced Programming','PID Control','PID is the most important control theory concept in FTC. It makes everything smoother, faster, and more reliable.',null,
     `<div class="two-col reveal">
       <div class="content-box">
-        <h3 style="color:#64B5F6">⚙️ How PID Works</h3>
-        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">PID continuously calculates the difference between your target and your current position (the "error"), then applies a correction.</p>
+        <h3 style="color:#64B5F6">⚙️ How PID Works<\/h3>
+        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">PID continuously calculates the difference between your target and your current position (the "error"), then applies a correction.<\/p>
         ${codeHTML([
-          `<span class="comment">// Simple PID controller implementation</span>`,
-          `<span class="kw">double</span> kP = <span class="num">0.02</span>;  <span class="comment">// Proportional gain</span>`,
-          `<span class="kw">double</span> kI = <span class="num">0.001</span>; <span class="comment">// Integral gain</span>`,
-          `<span class="kw">double</span> kD = <span class="num">0.005</span>; <span class="comment">// Derivative gain</span>`,
+          `<span class="comment">// Simple PID controller implementation<\/span>`,
+          `<span class="kw">double<\/span> kP = <span class="num">0.02<\/span>;  <span class="comment">// Proportional gain<\/span>`,
+          `<span class="kw">double<\/span> kI = <span class="num">0.001<\/span>; <span class="comment">// Integral gain<\/span>`,
+          `<span class="kw">double<\/span> kD = <span class="num">0.005<\/span>; <span class="comment">// Derivative gain<\/span>`,
           ``,
-          `<span class="kw">double</span> error = target - currentPosition;`,
-          `<span class="kw">double</span> integral += error * dt;`,
-          `<span class="kw">double</span> derivative = (error - lastError) / dt;`,
+          `<span class="kw">double<\/span> error = target - currentPosition;`,
+          `<span class="kw">double<\/span> integral += error * dt;`,
+          `<span class="kw">double<\/span> derivative = (error - lastError) / dt;`,
           ``,
-          `<span class="kw">double</span> output = (kP * error)`,
+          `<span class="kw">double<\/span> output = (kP * error)`,
           `             + (kI * integral)`,
           `             + (kD * derivative);`,
           ``,
-          `motor.<span class="fn">setPower</span>(output);`,
+          `motor.<span class="fn">setPower<\/span>(output);`,
           `lastError = error;`
         ])}
-      </div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:#64B5F6">Tuning Guide</h3>
+        <h3 style="color:#64B5F6">Tuning Guide<\/h3>
         ${compTableHTML(['Symptom','Cause','Fix'],
           [['Oscillates around target','kP too high','Reduce kP by 20%'],
            ['Reaches target slowly','kP too low','Increase kP by 20%'],
@@ -1789,9 +1789,9 @@ function renderWeek9(){
            ['Overshoots then oscillates','kD too low','Increase kD'],
            ['Noisy / jerky motion','kD too high','Reduce kD'],
            ['Sluggish start','Feedforward missing','Add kF * sign(error)']])}
-        <div class="insight-box" style="margin-top:12px">Start tuning: set kI=kD=0. Tune kP alone first. Then add kD. Only add kI if there\'s persistent steady-state error.</div>
-      </div>
-    </div>`
+        <div class="insight-box" style="margin-top:12px">Start tuning: set kI=kD=0. Tune kP alone first. Then add kD. Only add kI if there\'s persistent steady-state error.<\/div>
+      <\/div>
+    <\/div>`
   ,true));
 
   inject(sectionHTML('w-driver','Driver Practice','Driver & Match Simulation','Top FTC teams practice driving for as many hours as they spend building. It shows in competition.',null,
@@ -1805,29 +1805,29 @@ function renderWeek9(){
           ['📍','Practice starting positions','Run autonomous from both alliance positions. Verify it works from both sides.'],
           ['🤝','Alliance simulation','Practice working with a "partner" robot — or simulate by scoring for both sides.'],
         ])}
-      </div>
+      <\/div>
       <div class="content-box" style="align-self:start">
-        <h3 style="color:#64B5F6">FTCDashboard — Live Tuning Tool</h3>
-        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">FTCDashboard is a web interface that connects to your robot and lets you change PID values in real-time without re-deploying code.</p>
+        <h3 style="color:#64B5F6">FTCDashboard — Live Tuning Tool<\/h3>
+        <p style="color:var(--steel);font-size:.92rem;line-height:1.6;margin-bottom:14px">FTCDashboard is a web interface that connects to your robot and lets you change PID values in real-time without re-deploying code.<\/p>
         ${checklistHTML([
           ['1️⃣','Install FTCDashboard','Add to build.dependencies in build.gradle. One-time setup.'],
           ['2️⃣','Add @Config annotation','Marks your tuning variables as configurable from the dashboard.'],
           ['3️⃣','Open in browser','Navigate to 192.168.43.1:8080/dash on the same Wi-Fi as the robot.'],
           ['4️⃣','Tune live','Adjust kP, kI, kD and instantly see the effect — no re-deploy needed.'],
         ])}
-        <a href="https://acmerobotics.github.io/ftc-dashboard/" target="_blank" class="res-url" style="display:block;margin-top:12px">acmerobotics.github.io/ftc-dashboard</a>
-      </div>
-    </div>`
+        <a href="https://acmerobotics.github.io/ftc-dashboard/" target="_blank" class="res-url" style="display:block;margin-top:12px">acmerobotics.github.io/ftc-dashboard<\/a>
+      <\/div>
+    <\/div>`
   ,false));
 
-  inject(sectionHTML('w-quiz','Knowledge Check','Testing & Tuning Quiz',null,null,`<div id="quiz_w9"></div>`,true));
+  inject(sectionHTML('w-quiz','Knowledge Check','Testing & Tuning Quiz',null,null,`<div id="quiz_w9"><\/div>`,true));
   inject(sectionHTML('w-resources','Resources','Optimization Resources',null,null,
     `<div class="res-grid reveal">
-      <a class="res-card" href="https://acmerobotics.github.io/ftc-dashboard/" target="_blank"><div class="res-type">🛠️ Essential</div><div class="res-title">FTCDashboard</div><div class="res-desc">Real-time dashboard for tuning PID constants, viewing telemetry graphs, and controlling your robot from a browser.</div><span class="res-url">acmerobotics.github.io/ftc-dashboard</span></a>
-      <a class="res-card" href="https://gm0.org/docs/software/control-loops" target="_blank"><div class="res-type">📖 Required</div><div class="res-title">GM0: Control Loops</div><div class="res-desc">PID, feedforward, state-space control explained for FTC with practical tuning advice.</div><span class="res-url">gm0.org/docs/software</span></a>
-      <a class="res-card" href="https://www.learnroadrunner.com/tuning.html" target="_blank"><div class="res-type">⚙️ Advanced</div><div class="res-title">Road Runner Tuning Guide</div><div class="res-desc">Step-by-step tuning of Road Runner constants for your specific robot dimensions and motor characteristics.</div><span class="res-url">learnroadrunner.com</span></a>
-      <div class="res-card"><div class="res-type">📊 Deliverable</div><div class="res-title">Performance Log</div><div class="res-desc">Create a spreadsheet tracking: date, driver, auto score (out of 10 runs), TeleOp cycles, and top failures. Review weekly and prioritize the biggest improvements.</div></div>
-    </div>`
+      <a class="res-card" href="https://acmerobotics.github.io/ftc-dashboard/" target="_blank"><div class="res-type">🛠️ Essential<\/div><div class="res-title">FTCDashboard<\/div><div class="res-desc">Real-time dashboard for tuning PID constants, viewing telemetry graphs, and controlling your robot from a browser.<\/div><span class="res-url">acmerobotics.github.io/ftc-dashboard<\/span><\/a>
+      <a class="res-card" href="https://gm0.org/docs/software/control-loops" target="_blank"><div class="res-type">📖 Required<\/div><div class="res-title">GM0: Control Loops<\/div><div class="res-desc">PID, feedforward, state-space control explained for FTC with practical tuning advice.<\/div><span class="res-url">gm0.org/docs/software<\/span><\/a>
+      <a class="res-card" href="https://www.learnroadrunner.com/tuning.html" target="_blank"><div class="res-type">⚙️ Advanced<\/div><div class="res-title">Road Runner Tuning Guide<\/div><div class="res-desc">Step-by-step tuning of Road Runner constants for your specific robot dimensions and motor characteristics.<\/div><span class="res-url">learnroadrunner.com<\/span><\/a>
+      <div class="res-card"><div class="res-type">📊 Deliverable<\/div><div class="res-title">Performance Log<\/div><div class="res-desc">Create a spreadsheet tracking: date, driver, auto score (out of 10 runs), TeleOp cycles, and top failures. Review weekly and prioritize the biggest improvements.<\/div><\/div>
+    <\/div>`
   ,false));
 
   setTimeout(()=>initQuiz('quiz_w9',[
@@ -1849,7 +1849,7 @@ function renderWeek10(){
       ${cardHTML('amber','🏆','Tournament Structure',['League Meets: qualification rounds at local events','Regionals/States: top teams from all League Meets','World Championship: top ~5% globally','Awards given at every level'])}
       ${cardHTML('orange','⭐','Awards Strategy',['Think Award: judged on robot design process','Inspire Award: holistic team — requires all other awards','Engineering Notebook: required for most awards','Prepare a 5-minute team presentation'])}
       ${cardHTML('blue','📋','Competition Day Checklist',['Arrive 1 hour early for robot inspection','Bring: battery charger, spare bolts, hex key set','Know your autonomous start position','Scout alliance partners during qualifications'])}
-    </div>`
+    <\/div>`
   ,false));
 
   inject(sectionHTML('w-tournament','Tournament Day','Competition Day Playbook','Compete like a veteran team from Day 1.',null,
@@ -1865,21 +1865,21 @@ function renderWeek10(){
           ['🧠','Driver communication','Drivers agree on roles before match. No shouting during match — agree to signals.'],
           ['🎤','Talk to judges','Judges want to hear from you. Explain what you built, why you made each design choice, what you learned.'],
         ])}
-      </div>
+      <\/div>
       <div class="content-box" style="align-self:start">
-        <h3 style="color:var(--amber2)">Alliance Selection Strategy</h3>
-        <div class="info-row"><span class="info-emoji">1️⃣</span><p><strong>If you're a top-4 team</strong> — pick the most consistent mid-ranked team, not necessarily the highest scorer. Reliability wins.</p></div>
-        <div class="info-row"><span class="info-emoji">2️⃣</span><p><strong>If you're mid-ranked</strong> — approach top teams proactively. Introduce yourself, show your auto scores, mention your consistency.</p></div>
-        <div class="info-row"><span class="info-emoji">3️⃣</span><p><strong>Before alliances are made</strong> — talk to everyone. You don't know who will pick you or who you'll want to pick.</p></div>
-        <div class="info-row"><span class="info-emoji">4️⃣</span><p><strong>Complementary capabilities</strong> — if you score from high goals, find a partner who excels at cycling low goals or endgame.</p></div>
-        <div class="insight-box" style="margin-top:12px">The best alliance isn't two perfect robots. It's two robots that cover each other's weaknesses.</div>
-      </div>
-    </div>`
+        <h3 style="color:var(--amber2)">Alliance Selection Strategy<\/h3>
+        <div class="info-row"><span class="info-emoji">1️⃣<\/span><p><strong>If you're a top-4 team<\/strong> — pick the most consistent mid-ranked team, not necessarily the highest scorer. Reliability wins.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">2️⃣<\/span><p><strong>If you're mid-ranked<\/strong> — approach top teams proactively. Introduce yourself, show your auto scores, mention your consistency.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">3️⃣<\/span><p><strong>Before alliances are made<\/strong> — talk to everyone. You don't know who will pick you or who you'll want to pick.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">4️⃣<\/span><p><strong>Complementary capabilities<\/strong> — if you score from high goals, find a partner who excels at cycling low goals or endgame.<\/p><\/div>
+        <div class="insight-box" style="margin-top:12px">The best alliance isn't two perfect robots. It's two robots that cover each other's weaknesses.<\/div>
+      <\/div>
+    <\/div>`
   ,true));
 
   inject(sectionHTML('w-awards','Awards','FTC Awards Guide','Many teams win awards without winning matches. The awards pathway is as important as the competition performance.',null,
     `<div class="content-box reveal" style="margin-bottom:24px">
-      <h3 style="color:var(--amber2)">Major FTC Awards</h3>
+      <h3 style="color:var(--amber2)">Major FTC Awards<\/h3>
       ${compTableHTML(['Award','What Judges Look For','Engineering Notebook Required'],
         [['🏆 Inspire Award','Top overall team: technical excellence + outreach + presentation + all other awards. Highest award in FTC.','Yes — essential'],
          ['💡 Think Award','Design process, problem solving, and iteration. Show judges how you went from problem to solution.','Yes — detailed design sections'],
@@ -1887,10 +1887,10 @@ function renderWeek10(){
          ['⚙️ Design Award','Elegant, efficient, and creative mechanism design. Robot should be visually well-designed.','Yes — mechanism sections'],
          ['🌟 Motivate Award','Team spirit, community outreach, and FTC promotion. How are you spreading FIRST?','Yes — outreach sections'],
          ['🤝 Connect Award','Engagement with STEM community: mentors, sponsors, partnerships.','Yes — partnership sections']])}
-    </div>
+    <\/div>
     <div class="two-col reveal">
       <div class="content-box">
-        <h3 style="color:var(--amber2)">Engineering Notebook Tips</h3>
+        <h3 style="color:var(--amber2)">Engineering Notebook Tips<\/h3>
         ${checklistHTML([
           ['📅','Document every meeting','Date, who attended, what was decided, what was built. Photos of every iteration.'],
           ['🎨','Show iterations visually','Sketch prototype vs. final design side by side. Explain what changed and why.'],
@@ -1898,31 +1898,31 @@ function renderWeek10(){
           ['💭','Explain your WHY','Why did you choose Mecanum over Tank? Why this mechanism over alternatives?'],
           ['🌍','Include outreach','Community events, demonstrations, teaching. Quantify impact: people reached, hours volunteered.'],
         ])}
-      </div>
+      <\/div>
       <div class="content-box">
-        <h3 style="color:var(--amber2)">Judge Presentation (5 min)</h3>
-        <div class="info-row"><span class="info-emoji">1️⃣</span><p><strong>Team intro</strong> — every member says name + role in 10 seconds each.</p></div>
-        <div class="info-row"><span class="info-emoji">2️⃣</span><p><strong>Robot walkthrough</strong> — demonstrate each subsystem. Judges should understand the robot in 90 seconds.</p></div>
-        <div class="info-row"><span class="info-emoji">3️⃣</span><p><strong>Design decisions</strong> — explain one key design choice and what alternatives you considered.</p></div>
-        <div class="info-row"><span class="info-emoji">4️⃣</span><p><strong>What you learned</strong> — what failed, how you fixed it, what you'd do differently.</p></div>
-        <div class="info-row"><span class="info-emoji">5️⃣</span><p><strong>Invite questions</strong> — every team member should be able to answer about their subsystem.</p></div>
-        <div class="insight-box" style="margin-top:12px">Practice the presentation 5 times before the event. Time it. Hit exactly 5 minutes.</div>
-      </div>
-    </div>`
+        <h3 style="color:var(--amber2)">Judge Presentation (5 min)<\/h3>
+        <div class="info-row"><span class="info-emoji">1️⃣<\/span><p><strong>Team intro<\/strong> — every member says name + role in 10 seconds each.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">2️⃣<\/span><p><strong>Robot walkthrough<\/strong> — demonstrate each subsystem. Judges should understand the robot in 90 seconds.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">3️⃣<\/span><p><strong>Design decisions<\/strong> — explain one key design choice and what alternatives you considered.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">4️⃣<\/span><p><strong>What you learned<\/strong> — what failed, how you fixed it, what you'd do differently.<\/p><\/div>
+        <div class="info-row"><span class="info-emoji">5️⃣<\/span><p><strong>Invite questions<\/strong> — every team member should be able to answer about their subsystem.<\/p><\/div>
+        <div class="insight-box" style="margin-top:12px">Practice the presentation 5 times before the event. Time it. Hit exactly 5 minutes.<\/div>
+      <\/div>
+    <\/div>`
   ,false));
 
-  inject(sectionHTML('w-quiz','Knowledge Check','Competition Quiz',null,null,`<div id="quiz_w10"></div>`,true));
+  inject(sectionHTML('w-quiz','Knowledge Check','Competition Quiz',null,null,`<div id="quiz_w10"><\/div>`,true));
   inject(sectionHTML('w-resources','Season Complete','Final Resources',null,null,
     `<div class="res-grid reveal">
-      <a class="res-card" href="https://firstinspires.org/robotics/ftc" target="_blank"><div class="res-type">🏆 Essential</div><div class="res-title">FTC Official Website</div><div class="res-desc">Register for events, access game manuals, find your league coordinator, and submit your engineering notebook.</div><span class="res-url">firstinspires.org/ftc</span></a>
-      <a class="res-card" href="https://gm0.org" target="_blank"><div class="res-type">📖 Year-Round</div><div class="res-title">Game Manual 0 — Full Guide</div><div class="res-desc">The complete FTC community knowledge base. Return to it every season — it\'s updated for each new game.</div><span class="res-url">gm0.org</span></a>
-      <a class="res-card" href="https://ftcscout.org" target="_blank"><div class="res-type">📊 Scouting</div><div class="res-title">FTC Scout</div><div class="res-desc">Team and match statistics for every FTC event. Use for scouting alliance partners and preparing for competition.</div><span class="res-url">ftcscout.org</span></a>
+      <a class="res-card" href="https://firstinspires.org/robotics/ftc" target="_blank"><div class="res-type">🏆 Essential<\/div><div class="res-title">FTC Official Website<\/div><div class="res-desc">Register for events, access game manuals, find your league coordinator, and submit your engineering notebook.<\/div><span class="res-url">firstinspires.org/ftc<\/span><\/a>
+      <a class="res-card" href="https://gm0.org" target="_blank"><div class="res-type">📖 Year-Round<\/div><div class="res-title">Game Manual 0 — Full Guide<\/div><div class="res-desc">The complete FTC community knowledge base. Return to it every season — it\'s updated for each new game.<\/div><span class="res-url">gm0.org<\/span><\/a>
+      <a class="res-card" href="https://ftcscout.org" target="_blank"><div class="res-type">📊 Scouting<\/div><div class="res-title">FTC Scout<\/div><div class="res-desc">Team and match statistics for every FTC event. Use for scouting alliance partners and preparing for competition.<\/div><span class="res-url">ftcscout.org<\/span><\/a>
       <div class="res-card" style="background:linear-gradient(135deg,rgba(245,127,23,.1),rgba(0,188,212,.08));border-color:rgba(245,127,23,.3)">
-        <div class="res-type" style="color:var(--amber)">🎉 Season Complete</div>
-        <div class="res-title" style="color:var(--amber2)">Congratulations</div>
-        <div class="res-desc">You went from zero to competition-ready in one season. You understand mechanics, electronics, programming, and strategy. Now help the next class get here faster.</div>
-      </div>
-    </div>`
+        <div class="res-type" style="color:var(--amber)">🎉 Season Complete<\/div>
+        <div class="res-title" style="color:var(--amber2)">Congratulations<\/div>
+        <div class="res-desc">You went from zero to competition-ready in one season. You understand mechanics, electronics, programming, and strategy. Now help the next class get here faster.<\/div>
+      <\/div>
+    <\/div>`
   ,false));
 
   setTimeout(()=>initQuiz('quiz_w10',[
